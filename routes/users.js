@@ -33,7 +33,7 @@ userRouter.get('/profile', isLoggedIn, function(req, res){
 //function for checking if a user is logged in
 function isLoggedIn(req, res, next){
   if(req.isAuthenticated()) return next()
-  res.redirect('/login')
+  res.render('login', {message: "Please login to view your profile"})
 }
 
 // Route for logging out

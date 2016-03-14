@@ -13,7 +13,7 @@ var
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
   mainRoutes = require('./routes/main.js'),
-  userRoutes = require('.routes/users.js'),
+  userRoutes = require('./routes/users.js'),
   app = express()
 
 // ENVIRONMENT PORT
@@ -47,6 +47,8 @@ app.use(ejsLayouts)
 // ROUTES
 
 app.use('/', mainRoutes)
+
+app.use('/', userRoutes)
 
 // SERVER
 

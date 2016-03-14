@@ -1,17 +1,18 @@
 // SETUP
 
 var
-express = require('express'),
-mongoose = require('mongoose'),
-bodyParser = require('body-parser'),
-logger = require('morgan'),
-ejs = require('ejs'),
-ejsLayouts = require('express-ejs-layouts'),
-flash = require('connect-flash'),
-cookieParser = require('cookie-parser'),
-session = require('express-session'),
-passport = require('passport'),
-app = express()
+  express = require('express'),
+  mongoose = require('mongoose'),
+  bodyParser = require('body-parser'),
+  logger = require('morgan'),
+  ejs = require('ejs'),
+  ejsLayouts = require('express-ejs-layouts'),
+  flash = require('connect-flash'),
+  cookieParser = require('cookie-parser'),
+  session = require('express-session'),
+  passport = require('passport'),
+  mainRoutes = require('./routes/main.js')
+  app = express()
 
 // DATABASE
 
@@ -28,9 +29,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 // ROUTES
 
-app.get('/', function(req, res){
-  res.send("Home")
-})
+app.use('/', mainRoutes)
 
 // SERVER
 

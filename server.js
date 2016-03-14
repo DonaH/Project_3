@@ -21,11 +21,15 @@ mongoose.connect('mongodb://localhost/project-3', function(err){
   console.log("Connected to MongoDB (project-3)")
 })
 
+// CONFIGURE EJS VIEW
+app.set('view engine', 'ejs')
+
 // MIDDLEWARE
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
+app.use(ejsLayouts)
 
 // ROUTES
 

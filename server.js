@@ -12,18 +12,21 @@ var
   session = require('express-session'),
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
+  dotenv = require('dotenv').config(),
+  favicon = require('serve-favicon'),
   mainRoutes = require('./routes/main.js'),
   userRoutes = require('./routes/users.js'),
+  apiRoutes = require('./routes/api.js'),
   app = express()
 
 // ENVIRONMENT PORT
 var port = process.env.PORT || 3000
 
 // DATABASE
-
-mongoose.connect('mongodb://localhost/project-3', function(err){
+var dbURL = 'mongodb://localhost/project-3'
+mongoose.connect(dbURL, function(err){
   if(err) return console.log(err)
-  console.log("Connected to MongoDB (project-3)")
+  console.log("Connected to MongoDB: " + dbURL)
 })
 
 // CONFIGURE EJS VIEW
@@ -43,12 +46,16 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 app.use(ejsLayouts)
+app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // ROUTES
 
 app.use('/', mainRoutes)
 
 app.use('/', userRoutes)
+
+app.use('/api', apiRoutes)
+
 
 // SERVER
 

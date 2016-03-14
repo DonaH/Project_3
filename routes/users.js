@@ -20,7 +20,7 @@ userRouter.route('/signup')
   .get(function(req, res){
     res.render('signup', {message: req.flash('signupMessage')})
   })
-  .post(passport.authenticate('local-singup', {
+  .post(passport.authenticate('local-signup', {
     successRedirect: '/profile',
     failureRedirect: '/signup'
   }))

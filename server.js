@@ -5,6 +5,12 @@ express = require('express'),
 mongoose = require('mongoose'),
 bodyParser = require('body-parser'),
 logger = require('morgan'),
+ejs = require('ejs'),
+ejsLayouts = require('express-ejs-layouts'),
+flash = require('connect-flash'),
+cookieParser = require('cookie-parser'),
+session = require('express-session'),
+passport = require('passport'),
 app = express()
 
 // DATABASE

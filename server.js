@@ -15,7 +15,7 @@ var
   dotenv = require('dotenv').config(),
   mainRoutes = require('./routes/main.js'),
   userRoutes = require('./routes/users.js'),
-  apiRoutes = require('./api.js'),
+  apiRoutes = require('./routes/api.js'),
   app = express()
 
 // ENVIRONMENT PORT

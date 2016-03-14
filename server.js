@@ -13,6 +13,7 @@ var
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
   dotenv = require('dotenv').config(),
+  favicon = require('serve-favicon'),
   mainRoutes = require('./routes/main.js'),
   userRoutes = require('./routes/users.js'),
   apiRoutes = require('./routes/api.js'),
@@ -45,6 +46,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 app.use(ejsLayouts)
+app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // ROUTES
 

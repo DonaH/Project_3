@@ -48,6 +48,8 @@ app.use(ejsLayouts)
 
 app.use('/', mainRoutes)
 
+app.use('/', userRoutes)
+
 // SERVER
 
 app.listen(port, function() {

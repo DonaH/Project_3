@@ -15,5 +15,17 @@
   "bugs": {
     "url": "https://github.com/DonaH/Project_3/issues"
   },
-  "homepage": "https://github.com/DonaH/Project_3#readme"
+  "homepage": "https://github.com/DonaH/Project_3#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.1",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "express-ejs-layouts": "^2.0.0",
+    "express-session": "^1.13.0",
+    "mongoose": "^4.4.7",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2"
+  }
 }

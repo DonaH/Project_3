@@ -1,24 +1,31 @@
 <div class="row">
 
-  <h1>Login</h1>
+  <h1>Signup</h1>
 
   <% if(message.length > 0) {%>
     <div class="alert alert-danger"><%= message %></div>
     <% } %>
 
-  <form action="/login" method="post" class="col s12">
+  <form action="/signup" method="post" class="col s12">
 
     <div class="row">
       <div class="input-field col s12">
-        <input id="email" type="email" class="validate" placeholder="Email">
-        <%# <label for="email">Email</label>%>
+        <%# <label>Name</label>%>
+        <input id="name" type="text" placeholder="Name">
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s12">
+        <%# <label>Email</label>%>
+        <input id="email" type="email" class="validate" placeholder="Email">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%# <label>Password</label>%>
         <input id="password" type="password" class="validate" placeholder="Password">
-        <%# <label for="password">Password</label>%>
       </div>
     </div>
 
@@ -32,7 +39,7 @@
 
   <h2>Or Login With <a href="/auth/twitter" class="btn waves-effect waves-light">Twitter</a></h2>
 
-  <p>Or, <a href="/signup">Signup</a></p>
+  <p>Or, <a href="/login">Login</a></p>
   <p>Go back <a href="/">Home</a>
 
 </div>

@@ -22,7 +22,7 @@ var
 var port = process.env.PORT || 3000
 
 // DATABASE
-var dbURL = 'mongodb://local/host/project-3'
+var dbURL = 'mongodb://localhost/project-3'
 mongoose.connect(dbURL, function(err){
   if(err) return console.log(err)
   console.log("Connected to MongoDB: " + dbURL)

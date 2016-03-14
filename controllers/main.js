@@ -7,6 +7,10 @@ module.exports = {
       indexParagraph: "Paragraph stuff."
     }
     res.render('index', data)
+  },
+
+  analyses: function(req, res){
+    res.render('analyses')
   }
 
 

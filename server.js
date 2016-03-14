@@ -14,6 +14,9 @@ var
   mainRoutes = require('./routes/main.js')
   app = express()
 
+// ENVIRONMENT PORT
+var port = process.env.PORT || 3000
+
 // DATABASE
 
 mongoose.connect('mongodb://localhost/project-3', function(err){
@@ -37,6 +40,6 @@ app.use('/', mainRoutes)
 
 // SERVER
 
-app.listen(3000, function() {
-  console.log("Server running on port 3000.")
+app.listen(port, function() {
+  console.log("Server running on port ", port)
 })

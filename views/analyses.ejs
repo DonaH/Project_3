@@ -1,5 +1,5 @@
 
-
+<input type="text" name="twitter-handle" Placeholder="Enter Twitter Username" id="get-twitter-handle">
 <button type="button" id="get-twitter-data">Get Tweets</button>
 <br>
 <hr>
@@ -12,13 +12,14 @@
 
   var $getTwitterData = $('#get-twitter-data')
   var $result = $('#result')
+  var $twitterHandle = $('#get-twitter-handle')
 
   $getTwitterData.on('click', function(){
     console.log("Ajax call to the twitter API.")
     $
       .ajax({
         method: 'get',
-        url: '/api/twitter'
+        url: '/api/twitter/' + $twitterHandle.val()
       })
       .done(function(data){
         console.log(data)

@@ -12,7 +12,7 @@ var oauth2 = new OAuth2(process.env.TWITTER_API_KEY, process.env.TWITTER_API_SEC
 
 
 
-api.get('/twitter', function(req, res){
+api.get('/twitter/:id', function(req, res){
   console.log("Triggered Twitter API route")
   oauth2.getOAuthAccessToken('', {
     'grant_type': 'client_credentials'
@@ -21,7 +21,7 @@ api.get('/twitter', function(req, res){
     console.log(access_token); //string that we can use to authenticate request
     var options = {
       hostname: 'api.twitter.com',
-      path: '/1.1/statuses/user_timeline.json?screen_name=mostlyharmlessd',
+      path: '/1.1/statuses/user_timeline.json?screen_name=' + req.params.id + '&count=200',
       headers: {
         Authorization: 'Bearer ' + access_token
       }

@@ -11,7 +11,9 @@ var
   cookieParser = require('cookie-parser'),
   session = require('express-session'),
   passport = require('passport'),
-  mainRoutes = require('./routes/main.js')
+  passportConfig = require('./config/passport.js'),
+  mainRoutes = require('./routes/main.js'),
+  userRoutes = require('.routes/users.js'),
   app = express()
 
 // ENVIRONMENT PORT
@@ -30,8 +32,16 @@ app.set('view engine', 'ejs')
 // MIDDLEWARE
 
 app.use(logger('dev'))
+app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
+app.use(session({
+  secret: "boomboom",
+  cookie: {_expires: 6000000}
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(flash())
 app.use(ejsLayouts)
 
 // ROUTES

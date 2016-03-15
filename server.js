@@ -51,6 +51,11 @@ app.use(passport.session())
 app.use(flash())
 app.use(ejsLayouts)
 
+
+app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(express.static(__dirname + '/public'));
+
+
 // ROUTES
 
 app.use('/', mainRoutes)

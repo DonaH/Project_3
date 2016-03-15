@@ -11,8 +11,10 @@ module.exports = {
 
   analyses: function(req, res){
     res.render('analyses')
+  },
+
+  watson: function(req, res){
+    res.render('watson-test')
   }
-
-
 
 }

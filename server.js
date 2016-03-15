@@ -14,6 +14,8 @@ var
   passportConfig = require('./config/passport.js'),
   dotenv = require('dotenv').config({silent: true}),
   favicon = require('serve-favicon'),
+  watson = require('watson-developer-cloud'),
+  Profile = require('./models/Profile.js'),
   mainRoutes = require('./routes/main.js'),
   userRoutes = require('./routes/users.js'),
   apiRoutes = require('./routes/api.js'),

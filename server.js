@@ -12,7 +12,7 @@ var
   session = require('express-session'),
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
-  dotenv = require('dotenv').config(),
+  dotenv = require('dotenv').config({silent: true}),
   favicon = require('serve-favicon'),
   mainRoutes = require('./routes/main.js'),
   userRoutes = require('./routes/users.js'),

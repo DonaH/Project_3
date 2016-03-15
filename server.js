@@ -34,6 +34,7 @@ app.set('view engine', 'ejs')
 
 // MIDDLEWARE
 
+app.use(favicon(__dirname + '/public/favicon.ico'))
 app.use(logger('dev'))
 app.use(cookieParser())
 app.use(bodyParser.json())
@@ -46,7 +47,6 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 app.use(ejsLayouts)
-app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // ROUTES
 

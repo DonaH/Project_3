@@ -1,0 +1,33 @@
+
+<textarea type="text" name="text-to-analyze" Placeholder="Enter text for analysis." id="input-text-to-analyze"></textarea>
+<button type="button" id="get-psych-profile">Analyze</button>
+<br>
+<hr>
+<div><p id="result"></p></div>
+<br>
+<hr>
+
+
+<script type="text/javascript">
+
+  var $analyzeSubmit = $('#get-psych-profile')
+  var $result = $('#result')
+  var $textToAnalyze = $('#input-text-to-analyze')
+
+  $analyzeSubmit.on('click', function(){
+    console.log("Ajax call to the Watson API.")
+    $
+      .ajax({
+        method: 'post',
+        url: '/api/watson/',
+        data: JSON.stringify({ text: $textToAnalyze.val() }),
+        contentType: "application/json"
+      })
+      .done(function(data){
+        console.log(data)
+        $result.html("") //empty the result div
+        $result.text(data)
+      })
+  })
+
+</script>

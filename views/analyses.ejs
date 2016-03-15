@@ -1,0 +1,36 @@
+
+<input type="text" name="twitter-handle" Placeholder="Enter Twitter Username" id="get-twitter-handle">
+<button type="button" id="get-twitter-data">Get Tweets</button>
+<br>
+<hr>
+<div><p id="result"></p></div>
+<br>
+<hr>
+
+
+<script type="text/javascript">
+
+  var $getTwitterData = $('#get-twitter-data')
+  var $result = $('#result')
+  var $twitterHandle = $('#get-twitter-handle')
+
+  $getTwitterData.on('click', function(){
+    console.log("Ajax call to the twitter API.")
+    $
+      .ajax({
+        method: 'get',
+        url: '/api/twitter/' + $twitterHandle.val()
+      })
+      .done(function(data){
+        console.log(data)
+        $result.html("") //empty the result div
+        var compiledTweet = ""
+        for (i=0; i<data.length; i++){
+          compiledTweet += data[i].text
+          compiledTweet += " "
+        }
+        $result.text(compiledTweet)
+      })
+  })
+
+</script>

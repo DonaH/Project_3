@@ -1,6 +1,6 @@
 <div class="row">
 
-  <h1>Login</h1>
+  <h2>Login</h2>
 
   <% if(message.length > 0) {%>
     <div><%= message %></div>
@@ -10,6 +10,7 @@
 
     <div class="row">
       <div class="input-field col s12">
+        <i class="material-icons">email</i>
         <input name="email" type="email" class="validate" placeholder="Email">
         <%# <label for="email">Email</label>%>
       </div>
@@ -17,22 +18,21 @@
 
     <div class="row">
       <div class="input-field col s12">
+        <i class="material-icons">perm_identity</i>
         <input name="password" type="password" class="validate" placeholder="Password">
         <%# <label for="password">Password</label>%>
       </div>
     </div>
 
-    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <button class="btn-large waves-effect waves-blue waves-ripple" type="submit" name="action">Submit
       <i class="material-icons right">send</i>
     </button>
 
   </form>
 
   <hr>
-
-  <h2>Or Login With <a href="/auth/twitter" class="btn waves-effect waves-light">Twitter</a>img</h2>
-
-  <p>Or, <a href="/signup">Signup</a></p>
-  <p>Go back <a href="/">Home</a>
+  <h2>or Login With <a href="/auth/twitter"><img src= "images/twitter-img.jpg" /></a></h2>
+  <h6><a class="btn waves-effect waves-blue waves-ripple" href="/signup">Signup</a> here to create an account.</h6>
+  <h6>Go back <a href="/">Home</h6>
 
 </div>

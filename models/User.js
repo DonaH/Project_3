@@ -5,17 +5,17 @@ var
 
 var userSchema = new Schema({
   local: {
-    name: {type: String, unique: true, required: true},
-    email: {type: String, unique: true, required: true},
-    password: {type: String, required: true}
+    name: {type: String, unique: true},
+    email: String,
+    password: String
+  },
+  twitter: {
+    id: String,
+    name: String,
+    token: String,
+    screenName: String,
+    followers: Number
   }
-  // ,
-  // twitter: {
-  //   id: String,
-  //   name: String,
-  //   token: String,
-  //   email: String
-  // }
 })
 
 userSchema.methods.generateHash = function(password) {

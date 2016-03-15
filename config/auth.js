@@ -1,12 +1,10 @@
-// TWITTER AUTH 
+var dotenv = require('dotenv').config({silent: true})
 
-// module.exports = {
-//   'twitter': {
-//     'clientID': 'asdfasdf',
-//     'clientSecret' : 'asdfasdfsd',
-//     'callbackURL' : 'http://localhost:3000/auth/twitter/callback'
-//     'profileFields': ['emails', 'displayName']
-//   }
-// }
-
-// PUT CLIENTID AND SECRET IN .ENV TO ENSURE SECURITY
+module.exports = {
+  'twitter': {
+    'consumerKey': process.env.TWITTER_API_KEY,
+    'consumerSecret': process.env.TWITTER_API_SECRET,
+    'callbackURL': 'http://127.0.0.1:3000/auth/twitter/callback'
+    // 'profileFields': ['emails', 'displayName']
+  }
+}

@@ -1,9 +1,11 @@
 var
   passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
-  // TwitterStrategy = require('passport-twitter').Strategy,
-  User = require('../models/User.js')
-  // , configAuth = require('./auth.js')
+  TwitterStrategy = require('passport-twitter').Strategy,
+  User = require('../models/User.js'),
+  configAuth = require('./auth.js'),
+  dotenv = require('dotenv').config({silent: true})
+
 
 //USER OBJECT INTO COOKIE
 passport.serializeUser(function(user, done){
@@ -53,6 +55,27 @@ passport.use('local-login', new LocalStrategy({
   })
 }))
 
-//TWITTER STRATEGY
+//TWITTER STRATEGY FOR USER CREATION
+passport.use(new TwitterStrategy({
+  consumerKey: configAuth.twitter.consumerKey,
+  consumerSecret: configAuth.twitter.consumerSecret,
+  callbackURL: configAuth.twitter.callbackURL
+}, function(token, tokenSecret, profile, done){
+  console.log(profile)
+  User.findOne({'twitter.id': profile.id}, function(err, user){
+    if(err) console.log(err)
+    if(user) return done(null, user)
+    var newUser = new User()
+    newUser.twitter.id = profile.id
+    newUser.twitter.token = token
+    newUser.twitter.name = profile.displayName
+    newUser.twitter.screenName = profile.screenName
+    newUser.twitter.followersCount = profile.followersCount
+    newUser.save(function(err){
+      if(err) console.log(err)
+      return done(null, newUser)
+    })
+  })
+}))
 
 module.exports = passport

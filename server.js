@@ -24,6 +24,7 @@ var port = process.env.PORT || 3000
 
 // DATABASE
 var dbURL = 'mongodb://localhost/project-3'
+// dbURL for mLab MongoDB--  mongodb://<dbuser>:<dbpassword>@ds063134.mlab.com:63134/heroku_v7560t60
 mongoose.connect(dbURL, function(err){
   if(err) return console.log(err)
   console.log("Connected to MongoDB: " + dbURL)

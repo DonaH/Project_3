@@ -3,7 +3,7 @@ var
   api = express.Router(),
   request = require('request'),
   ///
-  OAuth2 = require('OAuth').OAuth2,
+  OAuth2 = require('oauth').OAuth2,
   https = require('https')
 
 //************* BEGIN TWITTER API *****************************//

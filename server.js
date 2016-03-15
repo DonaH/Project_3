@@ -12,7 +12,7 @@ var
   session = require('express-session'),
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
-  dotenv = require('dotenv').config(),
+  dotenv = require('dotenv').config({silent: true}),
   favicon = require('serve-favicon'),
   mainRoutes = require('./routes/main.js'),
   userRoutes = require('./routes/users.js'),
@@ -24,6 +24,7 @@ var port = process.env.PORT || 3000
 
 // DATABASE
 var dbURL = 'mongodb://localhost/project-3'
+// dbURL for mLab MongoDB--  mongodb://<dbuser>:<dbpassword>@ds063134.mlab.com:63134/heroku_v7560t60
 mongoose.connect(dbURL, function(err){
   if(err) return console.log(err)
   console.log("Connected to MongoDB: " + dbURL)
@@ -34,6 +35,7 @@ app.set('view engine', 'ejs')
 
 // MIDDLEWARE
 
+app.use(favicon(__dirname + '/public/favicon.ico'))
 app.use(logger('dev'))
 app.use(cookieParser())
 app.use(bodyParser.json())
@@ -46,7 +48,6 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 app.use(ejsLayouts)
-app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // ROUTES
 

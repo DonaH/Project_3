@@ -44,13 +44,11 @@ userRouter.get('/logout', function(req, res){
 
 // Routes for logging in and out with Twitter
 
-// userRouter.get('/auth/twitter', passport.authenticate('twitter', {
-//   scope: ['email']
-// }))
+userRouter.get('/auth/twitter', passport.authenticate('twitter'))
 
-// userRouter.get('/auth/twitter/callback', passport.authenticate('twitter'), {
-//   successRedirect: '/profile',
-//   failureRedirect: '/login'
-// })
+userRouter.get('/auth/twitter/callback', passport.authenticate('twitter', {
+  successRedirect: '/profile',
+  failureRedirect: '/login'
+}))
 
 module.exports = userRouter

@@ -69,8 +69,7 @@ passport.use(new TwitterStrategy({
     newUser.twitter.id = profile.id
     newUser.twitter.token = token
     newUser.twitter.name = profile.displayName
-    newUser.twitter.screenName = profile.screenName
-    newUser.twitter.followersCount = profile.followersCount
+    newUser.twitter.username = profile.username
     newUser.save(function(err){
       if(err) console.log(err)
       return done(null, newUser)

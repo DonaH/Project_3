@@ -51,6 +51,10 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 app.use(ejsLayouts)
+app.use(function(req,res,next){
+  res.locals.login = req.isAuthenticated()
+  next()
+})
 
 
 app.use(favicon(__dirname + '/public/favicon.ico'));

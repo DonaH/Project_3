@@ -12,9 +12,8 @@ var userSchema = new Schema({
   twitter: {
     id: String,
     name: String,
-    token: String,
-    screenName: String,
-    followers: Number
+    username: String,
+    token: String
   }
 })
 

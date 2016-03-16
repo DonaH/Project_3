@@ -1,6 +1,6 @@
 
 <input type="text" name="twitter-handle" Placeholder="Enter Twitter Username" id="get-twitter-handle">
-<button class="btn-medium waves-effect waves-lightblue waves-ripple" type="button" id="get-twitter-data">Get Tweets</button>
+<button class="btn-medium waves-effect waves-lightblue waves-ripple" type="button" id="analyze-tweets">Analyze Tweets</button>
 <br>
 <hr>
 <div><p id="result"></p></div>
@@ -10,11 +10,82 @@
 
 <script type="text/javascript">
 
-  var $getTwitterData = $('#get-twitter-data')
+  var $analyzeTweets = $('#analyze-tweets')
   var $result = $('#result')
   var $twitterHandle = $('#get-twitter-handle')
 
-  $getTwitterData.on('click', function(){
+  function displayAnalysis(data) {
+    //BIG 5 PERSONALITY TRAITS
+    $result.append("<strong>Big Five Personality Traits</strong><br>")
+    $result.append("Openness: " + data.big5personality.openness + "<br>")
+    $result.append("Conscientiousness: " + data.big5personality.conscientiousness + "<br>")
+    $result.append("Extraversion: " + data.big5personality.extraversion + "<br>")
+    $result.append("Agreeableness: " + data.big5personality.agreeableness + "<br>")
+    $result.append("Emotional Range: " + data.big5personality.emotionalRange + "<br>")
+    //Breakdown of openness
+    $result.append("<strong>Big Five Subcategory: Openness Breakdown</strong><br>")
+    $result.append("Adventurousness: " + data.opennessBreakdown.adventurousness + "<br>")
+    $result.append("Artistic Interests: " + data.opennessBreakdown.artisticInterests + "<br>")
+    $result.append("Emotionality: " + data.opennessBreakdown.emotionality + "<br>")
+    $result.append("Imagination: " + data.opennessBreakdown.imagination + "<br>")
+    $result.append("Intellect: " + data.opennessBreakdown.intellect + "<br>")
+    $result.append("Authority Challenging: " + data.opennessBreakdown.authorityChallenging + "<br>")
+    //Breakdown of conscientiousness
+    $result.append("<strong>Big Five Subcategory: Conscientiousness Breakdown</strong><br>")
+    $result.append("Achievement Striving: " + data.conscientiousnessBreakdown.achievementStriving + "<br>")
+    $result.append("Cautiousness: " + data.conscientiousnessBreakdown.cautiousness + "<br>")
+    $result.append("Dutifulness: " + data.conscientiousnessBreakdown.dutifulness + "<br>")
+    $result.append("Orderliness: " + data.conscientiousnessBreakdown.orderliness + "<br>")
+    $result.append("Self Discipline: " + data.conscientiousnessBreakdown.selfDiscipline + "<br>")
+    $result.append("Self Efficacy: " + data.conscientiousnessBreakdown.selfEfficacy + "<br>")
+    //Breakdown of extraversion
+    $result.append("<strong>Big Five Subcategory: Extraversion Breakdown</strong><br>")
+    $result.append("Activity Level: " + data.extraversionBreakdown.activityLevel + "<br>")
+    $result.append("Assertiveness: " + data.extraversionBreakdown.assertiveness + "<br>")
+    $result.append("Cheerfulness: " + data.extraversionBreakdown.cheerfulness + "<br>")
+    $result.append("Excitement Seeking: " + data.extraversionBreakdown.excitementSeeking + "<br>")
+    $result.append("Outgoing: " + data.extraversionBreakdown.outgoing + "<br>")
+    $result.append("Gregariousness: " + data.extraversionBreakdown.gregariousness + "<br>")
+    //Breakdown of agreeableness
+    $result.append("<strong>Big Five Subcategory: Agreeableness Breakdown</strong><br>")
+    $result.append("Altruism: " + data.agreeablenessBreakdown.altruism + "<br>")
+    $result.append("Cooperation: " + data.agreeablenessBreakdown.cooperation + "<br>")
+    $result.append("Modesty: " + data.agreeablenessBreakdown.modesty + "<br>")
+    $result.append("Uncompromising: " + data.agreeablenessBreakdown.uncompromising + "<br>")
+    $result.append("Sympathy: " + data.agreeablenessBreakdown.sympathy + "<br>")
+    $result.append("Trust: " + data.agreeablenessBreakdown.trust + "<br>")
+    //Breakdown of emotional range
+    $result.append("<strong>Big Five Subcategory: Emotional Range Breakdown</strong><br>")
+    $result.append("Fiery: " + data.emotionalRangeBreakdown.fiery + "<br>")
+    $result.append("Prone To Worry: " + data.emotionalRangeBreakdown.proneToWorry + "<br>")
+    $result.append("Melancholy: " + data.emotionalRangeBreakdown.melancholy + "<br>")
+    $result.append("Immoderation: " + data.emotionalRangeBreakdown.immoderation + "<br>")
+    $result.append("Self Consciousness: " + data.emotionalRangeBreakdown.selfConsciousness + "<br>")
+    $result.append("Susceptible To Stress: " + data.emotionalRangeBreakdown.susceptibleToStress + "<br>")
+    //NEEDS
+    $result.append("<strong>Needs</strong><br>")
+    $result.append("Challenge: " + data.needs.challenge + "<br>")
+    $result.append("Closeness: " + data.needs.closeness + "<br>")
+    $result.append("Curiosity: " + data.needs.curiosity + "<br>")
+    $result.append("Excitement: " + data.needs.excitement + "<br>")
+    $result.append("Harmony: " + data.needs.harmony + "<br>")
+    $result.append("Ideal: " + data.needs.ideal + "<br>")
+    $result.append("Liberty: " + data.needs.liberty + "<br>")
+    $result.append("Love: " + data.needs.love + "<br>")
+    $result.append("Practicality: " + data.needs.practicality + "<br>")
+    $result.append("Self Expression: " + data.needs.selfExpression + "<br>")
+    $result.append("Stability: " + data.needs.stability + "<br>")
+    $result.append("Structure: " + data.needs.structure + "<br>")
+    //VALUES
+    $result.append("<strong>Values</strong><br>")
+    $result.append("Conservation: " + data.values.conservation + "<br>")
+    $result.append("Openness To Change: " + data.values.opennessToChange + "<br>")
+    $result.append("Hedonism: " + data.values.hedonism + "<br>")
+    $result.append("Self Enhancement: " + data.values.selfEnhancement + "<br>")
+    $result.append("Self Transcendence: " + data.values.selfTranscendence + "<br>")
+    }
+
+  $analyzeTweets.on('click', function(){
     console.log("Ajax call to the twitter API.")
     $
       .ajax({
@@ -22,14 +93,26 @@
         url: '/api/twitter/' + $twitterHandle.val()
       })
       .done(function(data){
-        console.log(data)
-        $result.html("") //empty the result div
+        // console.log(data)
         var compiledTweet = ""
         for (i=0; i<data.length; i++){
           compiledTweet += data[i].text
           compiledTweet += " "
         }
-        $result.text(compiledTweet)
+    console.log("Ajax call to the Watson API.")
+    $
+      .ajax({
+        method: 'post',
+        url: '/api/watson/',
+        data: JSON.stringify({ text: compiledTweet }),
+        contentType: "application/json"
+      })
+      .done(function(data){
+        console.log(data)
+        $result.html("") //empty the result div
+        displayAnalysis(data)
+      })
+        // $result.text(compiledTweet)
       })
   })
 

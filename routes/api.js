@@ -150,11 +150,12 @@ api.post('/watson', function(req, res){
     newProfile.values.selfEnhancement = profile.tree.children[2].children[0].children[3].percentage
     newProfile.values.selfTranscendence = profile.tree.children[2].children[0].children[4].percentage
     //saving profile data object to database
-    newProfile.save(function(err){
+    newProfile.save(function(err, profile){
       if (err) throw err
       console.log("Profile saved.")
+      res.json(profile)
     })
-    res.json(profile)
+
   });
 })
 

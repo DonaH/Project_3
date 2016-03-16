@@ -133,7 +133,7 @@ function visualizeBig5Data(data) {
   ];
 
   //  the size of the overall svg element
-  var height = 200,
+  var height = 250,
       width = 393,
 
   //  the width of each bar and the offset between each bar
@@ -142,17 +142,18 @@ function visualizeBig5Data(data) {
 
   var colors = d3.scale.linear()
   .domain([0, chartdata.length*.33, chartdata.length*.66, chartdata.length])
-  .range(['#d6e9c6', '#bce8f1', '#faebcc', '#ebccd1'])
+  .range(['rgb(32, 66, 104)', 'rgb(32, 66, 144)', 'rgb(32, 66, 194)', 'rgb(32, 66, 244)'])
 
   var dynamicColor
 
-  var big5graph = d3.select('#graph').append('svg')
+  var big5graph = d3.select('#graph')
+    .append('svg')
     .attr('width', width)
     .attr('height', height)
-    .style('background', '#b6e3ff')
+    .style('background', '#ffffff')
     .selectAll('rect').data(chartdata)
     .enter().append('rect')
-      .style({'fill': function(data,i){return colors(i);}, 'stroke': '#31708f', 'stroke-width': '5'})
+      .style({'fill': function(data,i){return colors(i);}, 'stroke': 'rgba(0, 0, 0, 0.75)', 'stroke-width': '2'})
       .attr('width', barWidth)
       .attr('x', function (data, i) {
           return i * (barWidth + barOffset) + 7;
@@ -162,13 +163,12 @@ function visualizeBig5Data(data) {
       .on('mouseover', function(data) {
           dynamicColor = this.style.fill;
           d3.select(this)
-            .style('fill', '#f6f9bd')
+            .style('fill', '#b5f664')
       })
       .on('mouseout', function(data) {
           d3.select(this)
               .style('fill', dynamicColor)
       })
-
     big5graph.transition()
       .attr('height', function (data) {
           return data;
@@ -181,6 +181,107 @@ function visualizeBig5Data(data) {
       })
       .duration(2000)
       .ease('elastic');
+
+    d3.select("svg").selectAll("text")
+       .data(chartdata)
+       .enter()
+       .append("text")
+       .text(function(d) {
+         return (d/200).toFixed(2);
+         })
+       .attr('x', function (data, i) {
+           return i * (barWidth + barOffset) + 18;
+         })
+        .attr('y', 245)
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "18px")
+        .attr("fill", "white")
+
+        d3.select("svg")
+           .append("text")
+           .text("Big Five Personality Traits")
+           .attr("text-anchor", "middle")
+           .attr('x', 200)
+           .attr('y', 60)
+           .attr("font-family", "sans-serif")
+           .attr("font-size", "22px")
+           .attr("stroke", "black")
+           .attr("fill", "#666464")
+
+           d3.select("svg")
+              .append("text")
+              .text("@" + $twitterHandle.val())
+              .attr("text-anchor", "middle")
+              .attr('x', 200)
+              .attr('y', 30)
+              .attr("font-family", "sans-serif")
+              .attr("font-size", "22px")
+              .attr("stroke", "black")
+              .attr("fill", "#666464")
+
+              d3.select("svg")
+                 .append("text")
+                 .text("Openness")
+                 .attr("text-anchor", "middle")
+                 .attr("writing-mode", "tb")
+                 .attr('x', 35)
+                 .attr('y', 190)
+                 .attr("font-family", "sans-serif")
+                 .attr("font-size", "14px")
+                 .attr("stroke", "black")
+                 .attr("fill", "white")
+
+               d3.select("svg")
+                  .append("text")
+                  .text("Conscientiousness")
+                  .attr("text-anchor", "middle")
+                  .attr("writing-mode", "tb")
+                  .attr('x', 115)
+                  .attr('y', 190)
+                  .attr("font-family", "sans-serif")
+                  .attr("font-size", "14px")
+                  .attr("stroke", "black")
+                  .attr("fill", "white")
+
+                d3.select("svg")
+                   .append("text")
+                   .text("Extraversion")
+                   .attr("text-anchor", "middle")
+                   .attr("writing-mode", "tb")
+                   .attr('x', 195)
+                   .attr('y', 190)
+                   .attr("font-family", "sans-serif")
+                   .attr("font-size", "14px")
+                   .attr("stroke", "black")
+                   .attr("fill", "white")
+
+                 d3.select("svg")
+                    .append("text")
+                    .text("Agreeableness")
+                    .attr("text-anchor", "middle")
+                    .attr("writing-mode", "tb")
+                    .attr('x', 275)
+                    .attr('y', 190)
+                    .attr("font-family", "sans-serif")
+                    .attr("font-size", "14px")
+                    .attr("stroke", "black")
+                    .attr("fill", "white")
+
+                  d3.select("svg")
+                     .append("text")
+                     .text("Emotional Range")
+                     .attr("text-anchor", "middle")
+                     .attr("writing-mode", "tb")
+                     .attr('x', 360)
+                     .attr('y', 190)
+                     .attr("font-family", "sans-serif")
+                     .attr("font-size", "14px")
+                     .attr("stroke", "black")
+                     .attr("fill", "white")
+//            <text x="10" y="20" style="writing-mode: tb;">
+// Vertical
+//    </text>
+
 }
 
 

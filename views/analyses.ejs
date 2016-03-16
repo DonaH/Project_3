@@ -3,6 +3,7 @@
 <button class="btn-medium waves-effect waves-lightblue waves-ripple" type="button" id="analyze-tweets">Analyze Tweets</button>
 <br>
 <hr>
+<div id="graph"></div>
 <div><p id="result"></p></div>
 <br>
 <hr>
@@ -13,6 +14,7 @@
   var $analyzeTweets = $('#analyze-tweets')
   var $result = $('#result')
   var $twitterHandle = $('#get-twitter-handle')
+  var $graph = $('#graph')
 
   function displayAnalysis(data) {
     //BIG 5 PERSONALITY TRAITS
@@ -110,10 +112,90 @@
       .done(function(data){
         console.log(data)
         $result.html("") //empty the result div
+        $graph.html("") // empty the graph div
         displayAnalysis(data)
+        visualizeBig5Data(data)
       })
         // $result.text(compiledTweet)
       })
   })
+
+//***************D3js data visualization******************//
+
+function visualizeBig5Data(data) {
+  //  the data that powers the bar chart, a simple array of numeric values
+  var chartdata = [
+    (data.big5personality.openness * 200),
+    (data.big5personality.conscientiousness * 200),
+    (data.big5personality.extraversion * 200),
+    (data.big5personality.agreeableness * 200),
+    (data.big5personality.emotionalRange * 200)
+  ];
+
+  //  the size of the overall svg element
+  var height = 200,
+      width = 393,
+
+  //  the width of each bar and the offset between each bar
+      barWidth = 60,
+      barOffset = 20;
+
+  var colors = d3.scale.linear()
+  .domain([0, chartdata.length*.33, chartdata.length*.66, chartdata.length])
+  .range(['#d6e9c6', '#bce8f1', '#faebcc', '#ebccd1'])
+
+  var dynamicColor
+
+  var big5graph = d3.select('#graph').append('svg')
+    .attr('width', width)
+    .attr('height', height)
+    .style('background', '#b6e3ff')
+    .selectAll('rect').data(chartdata)
+    .enter().append('rect')
+      .style({'fill': function(data,i){return colors(i);}, 'stroke': '#31708f', 'stroke-width': '5'})
+      .attr('width', barWidth)
+      .attr('x', function (data, i) {
+          return i * (barWidth + barOffset) + 7;
+        })
+      .attr('height', 0)
+      .attr('y', height)
+      .on('mouseover', function(data) {
+          dynamicColor = this.style.fill;
+          d3.select(this)
+            .style('fill', '#f6f9bd')
+      })
+      .on('mouseout', function(data) {
+          d3.select(this)
+              .style('fill', dynamicColor)
+      })
+
+    big5graph.transition()
+      .attr('height', function (data) {
+          return data;
+      })
+      .attr('y', function (data) {
+          return height - data;
+      })
+      .delay(function (data, i) {
+          return i * 20;
+      })
+      .duration(2000)
+      .ease('elastic');
+}
+
+
+
+
+//Big Five Personality Traits
+// ((data.big5personality.openness * 1000) + "px")
+// (data.big5personality.conscientiousness * 1000)
+// (data.big5personality.extraversion * 1000)
+// (data.big5personality.agreeableness * 1000)
+// (data.big5personality.emotionalRange * 1000)
+
+
+
+
+//********************************************************//
 
 </script>

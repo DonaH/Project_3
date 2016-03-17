@@ -5,7 +5,7 @@
   <h2>Login</h2>
 
   <% if(message.length > 0) {%>
-    <div><%= message %></div>
+    <div id="flash-alert" style="background-color: rgba(214, 61, 61, 0.64); color: rgb(154, 20, 13); border-radius: 3px; text-align: center; padding: 5px 5px 5px 5px; width: 250px"><%= message %></div>
     <% } %>
 
   <form action="/login" method="post" class="col s12">
@@ -40,3 +40,10 @@
 
       </div>
 </div>
+
+<script type="text/javascript">
+  function slideAlertUp(){
+    $('#flash-alert').slideUp(400)
+  }
+  var slideAlert = window.setTimeout(slideAlertUp, 3000)
+</script>

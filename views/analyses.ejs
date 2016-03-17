@@ -3,6 +3,7 @@
 <button class="btn-medium waves-effect waves-lightblue waves-ripple" type="button" id="analyze-tweets">Analyze Tweets</button>
 <br>
 <hr>
+<div id="graph"></div>
 <div><p id="result"></p></div>
 <br>
 <hr>
@@ -13,76 +14,77 @@
   var $analyzeTweets = $('#analyze-tweets')
   var $result = $('#result')
   var $twitterHandle = $('#get-twitter-handle')
+  var $graph = $('#graph')
 
   function displayAnalysis(data) {
     //BIG 5 PERSONALITY TRAITS
     $result.append("<strong>Big Five Personality Traits</strong><br>")
-    $result.append("Openness: " + data.big5personality.openness + "<br>")
-    $result.append("Conscientiousness: " + data.big5personality.conscientiousness + "<br>")
-    $result.append("Extraversion: " + data.big5personality.extraversion + "<br>")
-    $result.append("Agreeableness: " + data.big5personality.agreeableness + "<br>")
-    $result.append("Emotional Range: " + data.big5personality.emotionalRange + "<br>")
+    $result.append("Openness: " + data.big5personality.openness.toFixed(2) + "<br>")
+    $result.append("Conscientiousness: " + data.big5personality.conscientiousness.toFixed(2) + "<br>")
+    $result.append("Extraversion: " + data.big5personality.extraversion.toFixed(2) + "<br>")
+    $result.append("Agreeableness: " + data.big5personality.agreeableness.toFixed(2) + "<br>")
+    $result.append("Emotional Range: " + data.big5personality.emotionalRange.toFixed(2) + "<br><br>")
     //Breakdown of openness
     $result.append("<strong>Big Five Subcategory: Openness Breakdown</strong><br>")
-    $result.append("Adventurousness: " + data.opennessBreakdown.adventurousness + "<br>")
-    $result.append("Artistic Interests: " + data.opennessBreakdown.artisticInterests + "<br>")
-    $result.append("Emotionality: " + data.opennessBreakdown.emotionality + "<br>")
-    $result.append("Imagination: " + data.opennessBreakdown.imagination + "<br>")
-    $result.append("Intellect: " + data.opennessBreakdown.intellect + "<br>")
-    $result.append("Authority Challenging: " + data.opennessBreakdown.authorityChallenging + "<br>")
+    $result.append("Adventurousness: " + data.opennessBreakdown.adventurousness.toFixed(2) + "<br>")
+    $result.append("Artistic Interests: " + data.opennessBreakdown.artisticInterests.toFixed(2) + "<br>")
+    $result.append("Emotionality: " + data.opennessBreakdown.emotionality.toFixed(2) + "<br>")
+    $result.append("Imagination: " + data.opennessBreakdown.imagination.toFixed(2) + "<br>")
+    $result.append("Intellect: " + data.opennessBreakdown.intellect.toFixed(2) + "<br>")
+    $result.append("Authority Challenging: " + data.opennessBreakdown.authorityChallenging.toFixed(2) + "<br><br>")
     //Breakdown of conscientiousness
     $result.append("<strong>Big Five Subcategory: Conscientiousness Breakdown</strong><br>")
-    $result.append("Achievement Striving: " + data.conscientiousnessBreakdown.achievementStriving + "<br>")
-    $result.append("Cautiousness: " + data.conscientiousnessBreakdown.cautiousness + "<br>")
-    $result.append("Dutifulness: " + data.conscientiousnessBreakdown.dutifulness + "<br>")
-    $result.append("Orderliness: " + data.conscientiousnessBreakdown.orderliness + "<br>")
-    $result.append("Self Discipline: " + data.conscientiousnessBreakdown.selfDiscipline + "<br>")
-    $result.append("Self Efficacy: " + data.conscientiousnessBreakdown.selfEfficacy + "<br>")
+    $result.append("Achievement Striving: " + data.conscientiousnessBreakdown.achievementStriving.toFixed(2) + "<br>")
+    $result.append("Cautiousness: " + data.conscientiousnessBreakdown.cautiousness.toFixed(2) + "<br>")
+    $result.append("Dutifulness: " + data.conscientiousnessBreakdown.dutifulness.toFixed(2) + "<br>")
+    $result.append("Orderliness: " + data.conscientiousnessBreakdown.orderliness.toFixed(2) + "<br>")
+    $result.append("Self Discipline: " + data.conscientiousnessBreakdown.selfDiscipline.toFixed(2) + "<br>")
+    $result.append("Self Efficacy: " + data.conscientiousnessBreakdown.selfEfficacy.toFixed(2) + "<br><br>")
     //Breakdown of extraversion
     $result.append("<strong>Big Five Subcategory: Extraversion Breakdown</strong><br>")
-    $result.append("Activity Level: " + data.extraversionBreakdown.activityLevel + "<br>")
-    $result.append("Assertiveness: " + data.extraversionBreakdown.assertiveness + "<br>")
-    $result.append("Cheerfulness: " + data.extraversionBreakdown.cheerfulness + "<br>")
-    $result.append("Excitement Seeking: " + data.extraversionBreakdown.excitementSeeking + "<br>")
-    $result.append("Outgoing: " + data.extraversionBreakdown.outgoing + "<br>")
-    $result.append("Gregariousness: " + data.extraversionBreakdown.gregariousness + "<br>")
+    $result.append("Activity Level: " + data.extraversionBreakdown.activityLevel.toFixed(2) + "<br>")
+    $result.append("Assertiveness: " + data.extraversionBreakdown.assertiveness.toFixed(2) + "<br>")
+    $result.append("Cheerfulness: " + data.extraversionBreakdown.cheerfulness.toFixed(2) + "<br>")
+    $result.append("Excitement Seeking: " + data.extraversionBreakdown.excitementSeeking.toFixed(2) + "<br>")
+    $result.append("Outgoing: " + data.extraversionBreakdown.outgoing.toFixed(2) + "<br>")
+    $result.append("Gregariousness: " + data.extraversionBreakdown.gregariousness.toFixed(2) + "<br><br>")
     //Breakdown of agreeableness
     $result.append("<strong>Big Five Subcategory: Agreeableness Breakdown</strong><br>")
-    $result.append("Altruism: " + data.agreeablenessBreakdown.altruism + "<br>")
-    $result.append("Cooperation: " + data.agreeablenessBreakdown.cooperation + "<br>")
-    $result.append("Modesty: " + data.agreeablenessBreakdown.modesty + "<br>")
-    $result.append("Uncompromising: " + data.agreeablenessBreakdown.uncompromising + "<br>")
-    $result.append("Sympathy: " + data.agreeablenessBreakdown.sympathy + "<br>")
-    $result.append("Trust: " + data.agreeablenessBreakdown.trust + "<br>")
+    $result.append("Altruism: " + data.agreeablenessBreakdown.altruism.toFixed(2) + "<br>")
+    $result.append("Cooperation: " + data.agreeablenessBreakdown.cooperation.toFixed(2) + "<br>")
+    $result.append("Modesty: " + data.agreeablenessBreakdown.modesty.toFixed(2) + "<br>")
+    $result.append("Uncompromising: " + data.agreeablenessBreakdown.uncompromising.toFixed(2) + "<br>")
+    $result.append("Sympathy: " + data.agreeablenessBreakdown.sympathy.toFixed(2) + "<br>")
+    $result.append("Trust: " + data.agreeablenessBreakdown.trust.toFixed(2) + "<br><br>")
     //Breakdown of emotional range
     $result.append("<strong>Big Five Subcategory: Emotional Range Breakdown</strong><br>")
-    $result.append("Fiery: " + data.emotionalRangeBreakdown.fiery + "<br>")
-    $result.append("Prone To Worry: " + data.emotionalRangeBreakdown.proneToWorry + "<br>")
-    $result.append("Melancholy: " + data.emotionalRangeBreakdown.melancholy + "<br>")
-    $result.append("Immoderation: " + data.emotionalRangeBreakdown.immoderation + "<br>")
-    $result.append("Self Consciousness: " + data.emotionalRangeBreakdown.selfConsciousness + "<br>")
-    $result.append("Susceptible To Stress: " + data.emotionalRangeBreakdown.susceptibleToStress + "<br>")
+    $result.append("Fiery: " + data.emotionalRangeBreakdown.fiery.toFixed(2) + "<br>")
+    $result.append("Prone To Worry: " + data.emotionalRangeBreakdown.proneToWorry.toFixed(2) + "<br>")
+    $result.append("Melancholy: " + data.emotionalRangeBreakdown.melancholy.toFixed(2) + "<br>")
+    $result.append("Immoderation: " + data.emotionalRangeBreakdown.immoderation.toFixed(2) + "<br>")
+    $result.append("Self Consciousness: " + data.emotionalRangeBreakdown.selfConsciousness.toFixed(2) + "<br>")
+    $result.append("Susceptible To Stress: " + data.emotionalRangeBreakdown.susceptibleToStress.toFixed(2) + "<br><br>")
     //NEEDS
     $result.append("<strong>Needs</strong><br>")
-    $result.append("Challenge: " + data.needs.challenge + "<br>")
-    $result.append("Closeness: " + data.needs.closeness + "<br>")
-    $result.append("Curiosity: " + data.needs.curiosity + "<br>")
-    $result.append("Excitement: " + data.needs.excitement + "<br>")
-    $result.append("Harmony: " + data.needs.harmony + "<br>")
-    $result.append("Ideal: " + data.needs.ideal + "<br>")
-    $result.append("Liberty: " + data.needs.liberty + "<br>")
-    $result.append("Love: " + data.needs.love + "<br>")
-    $result.append("Practicality: " + data.needs.practicality + "<br>")
-    $result.append("Self Expression: " + data.needs.selfExpression + "<br>")
-    $result.append("Stability: " + data.needs.stability + "<br>")
-    $result.append("Structure: " + data.needs.structure + "<br>")
+    $result.append("Challenge: " + data.needs.challenge.toFixed(2) + "<br>")
+    $result.append("Closeness: " + data.needs.closeness.toFixed(2) + "<br>")
+    $result.append("Curiosity: " + data.needs.curiosity.toFixed(2) + "<br>")
+    $result.append("Excitement: " + data.needs.excitement.toFixed(2) + "<br>")
+    $result.append("Harmony: " + data.needs.harmony.toFixed(2) + "<br>")
+    $result.append("Ideal: " + data.needs.ideal.toFixed(2) + "<br>")
+    $result.append("Liberty: " + data.needs.liberty.toFixed(2) + "<br>")
+    $result.append("Love: " + data.needs.love.toFixed(2) + "<br>")
+    $result.append("Practicality: " + data.needs.practicality.toFixed(2) + "<br>")
+    $result.append("Self Expression: " + data.needs.selfExpression.toFixed(2) + "<br>")
+    $result.append("Stability: " + data.needs.stability.toFixed(2) + "<br>")
+    $result.append("Structure: " + data.needs.structure.toFixed(2) + "<br><br>")
     //VALUES
     $result.append("<strong>Values</strong><br>")
-    $result.append("Conservation: " + data.values.conservation + "<br>")
-    $result.append("Openness To Change: " + data.values.opennessToChange + "<br>")
-    $result.append("Hedonism: " + data.values.hedonism + "<br>")
-    $result.append("Self Enhancement: " + data.values.selfEnhancement + "<br>")
-    $result.append("Self Transcendence: " + data.values.selfTranscendence + "<br>")
+    $result.append("Conservation: " + data.values.conservation.toFixed(2) + "<br>")
+    $result.append("Openness To Change: " + data.values.opennessToChange.toFixed(2) + "<br>")
+    $result.append("Hedonism: " + data.values.hedonism.toFixed(2) + "<br>")
+    $result.append("Self Enhancement: " + data.values.selfEnhancement.toFixed(2) + "<br>")
+    $result.append("Self Transcendence: " + data.values.selfTranscendence.toFixed(2) + "<br><br>")
     }
 
   $analyzeTweets.on('click', function(){
@@ -110,10 +112,188 @@
       .done(function(data){
         console.log(data)
         $result.html("") //empty the result div
+        $graph.html("") // empty the graph div
         displayAnalysis(data)
+        visualizeBig5Data(data)
       })
         // $result.text(compiledTweet)
       })
   })
+
+//***************D3js data visualization******************//
+
+function visualizeBig5Data(data) {
+  //  the data that powers the bar chart, a simple array of numeric values
+  var chartdata = [
+    (data.big5personality.openness * 200),
+    (data.big5personality.conscientiousness * 200),
+    (data.big5personality.extraversion * 200),
+    (data.big5personality.agreeableness * 200),
+    (data.big5personality.emotionalRange * 200)
+  ];
+
+  //  the size of the overall svg element
+  var height = 360,
+      width = 450,
+      heightOffset = 250
+
+  //  the width of each bar and the offset between each bar
+      barWidth = 60,
+      barOffset = 20;
+
+  var colors = d3.scale.linear()
+  .domain([0, chartdata.length*.33, chartdata.length*.66, chartdata.length])
+  .range(['rgb(49, 119, 198)', 'rgb(32, 66, 144)', 'rgb(44, 88, 252)', 'rgb(39, 57, 150)'])
+
+  var dynamicColor
+
+  var big5graph = d3.select('#graph')
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height)
+    .style('background', '#ffffff')
+    .selectAll('rect').data(chartdata)
+    .enter().append('rect')
+      .style({'fill': function(data,i){return colors(i);}, 'stroke': 'rgba(0, 0, 0, 0.75)', 'stroke-width': '2'})
+      .attr('width', barWidth)
+      .attr('x', function (data, i) {
+          return i * (barWidth + barOffset) + 7;
+        })
+      .attr('height', 0)
+      .attr('y', heightOffset)
+      .on('mouseover', function(data) {
+          dynamicColor = this.style.fill;
+          d3.select(this)
+            .style('fill', '#b5f664')
+      })
+      .on('mouseout', function(data) {
+          d3.select(this)
+              .style('fill', dynamicColor)
+      })
+    big5graph.transition()
+      .attr('height', function (data) {
+          return data;
+      })
+      .attr('y', function (data) {
+          return heightOffset - data;
+      })
+      .delay(function (data, i) {
+          return i * 20;
+      })
+      .duration(2000)
+      .ease('elastic');
+
+    d3.select("svg").selectAll("text")
+       .data(chartdata)
+       .enter()
+       .append("text")
+       .text(function(d) {
+         return (d/200).toFixed(2);
+         })
+       .attr('x', function (data, i) {
+           return i * (barWidth + barOffset) + 18;
+         })
+        .attr('y', 245)
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "18px")
+        .attr("stroke", "black")
+        .attr("stroke-width", "0.5")
+        .attr("fill", "white")
+
+        d3.select("svg")
+           .append("text")
+           .text("Big Five Personality Traits")
+           .attr("text-anchor", "middle")
+           .attr('x', 200)
+           .attr('y', 60)
+           .attr("font-family", "sans-serif")
+           .attr("font-size", "22px")
+           .attr("stroke", "black")
+           .attr("fill", "#666464")
+
+           d3.select("svg")
+              .append("text")
+              .text("@" + $twitterHandle.val())
+              .attr("text-anchor", "middle")
+              .attr('x', 200)
+              .attr('y', 30)
+              .attr("font-family", "sans-serif")
+              .attr("font-size", "22px")
+              .attr("stroke", "black")
+              .attr("fill", "#666464")
+
+              d3.select("svg")
+                 .append("text")
+                 .text("Openness")
+                 .attr("text-anchor", "start")
+                 .attr("writing-mode", "tb")
+                 .attr('x', -165)
+                 .attr('y', 210)
+                 .attr("transform", "rotate(-45)")
+                 .attr("font-family", "sans-serif")
+                 .attr("font-size", "14px")
+                 .attr("fill", "black")
+                 .on('mouseover', function(data) {
+                     Materialize.toast('<p style="word-break: normal">Openness is a general appreciation for art, emotion, adventure, unusual ideas, imagination, curiosity, and variety of experience. People who are open to experience are intellectually curious, open to emotion, sensitive to beauty and willing to try new things. They tend to be, when compared to closed people, more creative and more aware of their feelings. They are also more likely to hold unconventional beliefs.</p>', 8000)})
+
+               d3.select("svg")
+                  .append("text")
+                  .text("Conscientiousness")
+                  .attr("text-anchor", "start")
+                  .attr("writing-mode", "tb")
+                  .attr('x', -110)
+                  .attr('y', 265)
+                  .attr("transform", "rotate(-45)")
+                  .attr("font-family", "sans-serif")
+                  .attr("font-size", "14px")
+                  .attr("fill", "black")
+                  .on('mouseover', function(data) {
+                      Materialize.toast('<p style="word-break: normal">Conscientiousness is a tendency to show self-discipline, act dutifully, and aim for achievement against measures or outside expectations. It is related to the way in which people control, regulate, and direct their impulses.</p>', 5000)})
+
+                d3.select("svg")
+                   .append("text")
+                   .text("Extraversion")
+                   .attr("text-anchor", "start")
+                   .attr("writing-mode", "tb")
+                   .attr('x', -55)
+                   .attr('y', 320)
+                   .attr("transform", "rotate(-45)")
+                   .attr("font-family", "sans-serif")
+                   .attr("font-size", "14px")
+                   .attr("fill", "black")
+                   .on('mouseover', function(data) {
+                       Materialize.toast('<p style="word-break: normal">Extraversion is characterized by breadth of activities (as opposed to depth), surgency from external activity/situations, and energy creation from external means. The trait is marked by pronounced engagement with the external world. Extraverts enjoy interacting with people, and are often perceived as full of energy. They tend to be enthusiastic, action-oriented individuals. They possess high group visibility, like to talk, and assert themselves.</p>', 8000)})
+
+                 d3.select("svg")
+                    .append("text")
+                    .text("Agreeableness")
+                    .attr("text-anchor", "start")
+                    .attr("writing-mode", "tb")
+                    .attr('x', 7)
+                    .attr('y', 377)
+                    .attr("transform", "rotate(-45)")
+                    .attr("font-family", "sans-serif")
+                    .attr("font-size", "14px")
+                    .attr("fill", "black")
+                    .on('mouseover', function(data) {
+                        Materialize.toast("<p style='word-break: normal'>The agreeableness trait reflects individual differences in general concern for social harmony. Agreeable individuals value getting along with others. They are generally considerate, kind, generous, trusting and trustworthy, helpful, and willing to compromise their interests with others. Agreeable people also have an optimistic view of human nature.  <br>Disagreeable individuals place self-interest above getting along with others. They are generally unconcerned with others' well-being, and are less likely to extend themselves for other people. Sometimes their skepticism about others' motives causes them to be suspicious, unfriendly, and uncooperative.</p>", 10000)})
+
+                  d3.select("svg")
+                     .append("text")
+                     .text("Emotional Range")
+                     .attr("text-anchor", "start")
+                     .attr("writing-mode", "tb")
+                     .attr('x', 60)
+                     .attr('y', 435)
+                     .attr("transform", "rotate(-45)")
+                     .attr("font-family", "sans-serif")
+                     .attr("font-size", "14px")
+                     .attr("fill", "black")
+                     .on('mouseover', function(data) {
+                         Materialize.toast('<p style="word-break: normal">Emotional range (i.e., neuroticism) is the tendency to experience negative emotions, such as anger, anxiety, or depression. It is sometimes called emotional instability, or is reversed and referred to as emotional stability. Those who score high in neuroticism are emotionally reactive and vulnerable to stress. They are more likely to interpret ordinary situations as threatening, and minor frustrations as hopelessly difficult.</p>', 8000)})
+
+}
+
+//****************END D3js DATA VISUALIZATION**********************//
 
 </script>

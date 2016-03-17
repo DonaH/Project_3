@@ -1,15 +1,13 @@
-  <div class="page-header">
+  <div class="page-header text-center">
 
     <h1><%= user.local.name || user.twitter.name %> </h1>
 
   </div>
 
-  <button type="button" id="delete-user">DELETE USER</button>
-
   <div>
     <div>
       <% if(user.local.name){ %>
-        <h3>Locally Stored User</h3>
+        <h3 class="text-center">Locally Stored User</h3>
 
         <p>
           <strong>Name</strong>: <%= user.local.name %><br>
@@ -34,6 +32,9 @@
 
   </div>
 
+  <button type="button" id="delete-user">DELETE USER</button>
+
+
   <script type="text/javascript">
 
   var $deleteUser = $('#delete-user')
@@ -49,8 +50,5 @@
         }
       })
   })
-
-
-
 
   </script>

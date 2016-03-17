@@ -17,10 +17,20 @@
   </head>
   <body>
     <% include ./partials/nav %>
-    <div class="container">
 
+    <% if(login) { %>
+    <div class="container">
+      <%- body %>
     </div>
-    <%- body %>
+
+    <% } else { %>
+      <div class="container">
+
+      </div>
+
+      <%- body %>
+
+    <% } %>
 
   </body>
 </html>

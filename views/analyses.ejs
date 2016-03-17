@@ -23,7 +23,7 @@
     $result.append("Conscientiousness: " + data.big5personality.conscientiousness.toFixed(2) + "<br>")
     $result.append("Extraversion: " + data.big5personality.extraversion.toFixed(2) + "<br>")
     $result.append("Agreeableness: " + data.big5personality.agreeableness.toFixed(2) + "<br>")
-    $result.append("Emotional Range: " + data.big5personality.emotionalRange.toFixed(2) + "<br>")
+    $result.append("Emotional Range: " + data.big5personality.emotionalRange.toFixed(2) + "<br><br>")
     //Breakdown of openness
     $result.append("<strong>Big Five Subcategory: Openness Breakdown</strong><br>")
     $result.append("Adventurousness: " + data.opennessBreakdown.adventurousness.toFixed(2) + "<br>")
@@ -31,7 +31,7 @@
     $result.append("Emotionality: " + data.opennessBreakdown.emotionality.toFixed(2) + "<br>")
     $result.append("Imagination: " + data.opennessBreakdown.imagination.toFixed(2) + "<br>")
     $result.append("Intellect: " + data.opennessBreakdown.intellect.toFixed(2) + "<br>")
-    $result.append("Authority Challenging: " + data.opennessBreakdown.authorityChallenging.toFixed(2) + "<br>")
+    $result.append("Authority Challenging: " + data.opennessBreakdown.authorityChallenging.toFixed(2) + "<br><br>")
     //Breakdown of conscientiousness
     $result.append("<strong>Big Five Subcategory: Conscientiousness Breakdown</strong><br>")
     $result.append("Achievement Striving: " + data.conscientiousnessBreakdown.achievementStriving.toFixed(2) + "<br>")
@@ -39,7 +39,7 @@
     $result.append("Dutifulness: " + data.conscientiousnessBreakdown.dutifulness.toFixed(2) + "<br>")
     $result.append("Orderliness: " + data.conscientiousnessBreakdown.orderliness.toFixed(2) + "<br>")
     $result.append("Self Discipline: " + data.conscientiousnessBreakdown.selfDiscipline.toFixed(2) + "<br>")
-    $result.append("Self Efficacy: " + data.conscientiousnessBreakdown.selfEfficacy.toFixed(2) + "<br>")
+    $result.append("Self Efficacy: " + data.conscientiousnessBreakdown.selfEfficacy.toFixed(2) + "<br><br>")
     //Breakdown of extraversion
     $result.append("<strong>Big Five Subcategory: Extraversion Breakdown</strong><br>")
     $result.append("Activity Level: " + data.extraversionBreakdown.activityLevel.toFixed(2) + "<br>")
@@ -47,7 +47,7 @@
     $result.append("Cheerfulness: " + data.extraversionBreakdown.cheerfulness.toFixed(2) + "<br>")
     $result.append("Excitement Seeking: " + data.extraversionBreakdown.excitementSeeking.toFixed(2) + "<br>")
     $result.append("Outgoing: " + data.extraversionBreakdown.outgoing.toFixed(2) + "<br>")
-    $result.append("Gregariousness: " + data.extraversionBreakdown.gregariousness.toFixed(2) + "<br>")
+    $result.append("Gregariousness: " + data.extraversionBreakdown.gregariousness.toFixed(2) + "<br><br>")
     //Breakdown of agreeableness
     $result.append("<strong>Big Five Subcategory: Agreeableness Breakdown</strong><br>")
     $result.append("Altruism: " + data.agreeablenessBreakdown.altruism.toFixed(2) + "<br>")
@@ -55,7 +55,7 @@
     $result.append("Modesty: " + data.agreeablenessBreakdown.modesty.toFixed(2) + "<br>")
     $result.append("Uncompromising: " + data.agreeablenessBreakdown.uncompromising.toFixed(2) + "<br>")
     $result.append("Sympathy: " + data.agreeablenessBreakdown.sympathy.toFixed(2) + "<br>")
-    $result.append("Trust: " + data.agreeablenessBreakdown.trust.toFixed(2) + "<br>")
+    $result.append("Trust: " + data.agreeablenessBreakdown.trust.toFixed(2) + "<br><br>")
     //Breakdown of emotional range
     $result.append("<strong>Big Five Subcategory: Emotional Range Breakdown</strong><br>")
     $result.append("Fiery: " + data.emotionalRangeBreakdown.fiery.toFixed(2) + "<br>")
@@ -63,7 +63,7 @@
     $result.append("Melancholy: " + data.emotionalRangeBreakdown.melancholy.toFixed(2) + "<br>")
     $result.append("Immoderation: " + data.emotionalRangeBreakdown.immoderation.toFixed(2) + "<br>")
     $result.append("Self Consciousness: " + data.emotionalRangeBreakdown.selfConsciousness.toFixed(2) + "<br>")
-    $result.append("Susceptible To Stress: " + data.emotionalRangeBreakdown.susceptibleToStress.toFixed(2) + "<br>")
+    $result.append("Susceptible To Stress: " + data.emotionalRangeBreakdown.susceptibleToStress.toFixed(2) + "<br><br>")
     //NEEDS
     $result.append("<strong>Needs</strong><br>")
     $result.append("Challenge: " + data.needs.challenge.toFixed(2) + "<br>")
@@ -77,14 +77,14 @@
     $result.append("Practicality: " + data.needs.practicality.toFixed(2) + "<br>")
     $result.append("Self Expression: " + data.needs.selfExpression.toFixed(2) + "<br>")
     $result.append("Stability: " + data.needs.stability.toFixed(2) + "<br>")
-    $result.append("Structure: " + data.needs.structure.toFixed(2) + "<br>")
+    $result.append("Structure: " + data.needs.structure.toFixed(2) + "<br><br>")
     //VALUES
     $result.append("<strong>Values</strong><br>")
     $result.append("Conservation: " + data.values.conservation.toFixed(2) + "<br>")
     $result.append("Openness To Change: " + data.values.opennessToChange.toFixed(2) + "<br>")
     $result.append("Hedonism: " + data.values.hedonism.toFixed(2) + "<br>")
     $result.append("Self Enhancement: " + data.values.selfEnhancement.toFixed(2) + "<br>")
-    $result.append("Self Transcendence: " + data.values.selfTranscendence.toFixed(2) + "<br>")
+    $result.append("Self Transcendence: " + data.values.selfTranscendence.toFixed(2) + "<br><br>")
     }
 
   $analyzeTweets.on('click', function(){

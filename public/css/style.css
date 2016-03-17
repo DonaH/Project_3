@@ -2,7 +2,7 @@
     When creating your CSS selector,
     change "brown" to something of your choosing
     */
-    
+
 .waves-effect.waves-blue.waves-ripple {
  /* The alpha value allows the text and background color
  of the button to still show through. */
@@ -17,4 +17,8 @@ h1 {
 }
 .parallax-container {
 height: 540px;
+}
+
+.text-center {
+  text-align: center;
 }

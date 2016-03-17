@@ -133,8 +133,9 @@ function visualizeBig5Data(data) {
   ];
 
   //  the size of the overall svg element
-  var height = 250,
-      width = 393,
+  var height = 360,
+      width = 450,
+      heightOffset = 250
 
   //  the width of each bar and the offset between each bar
       barWidth = 60,
@@ -159,7 +160,7 @@ function visualizeBig5Data(data) {
           return i * (barWidth + barOffset) + 7;
         })
       .attr('height', 0)
-      .attr('y', height)
+      .attr('y', heightOffset)
       .on('mouseover', function(data) {
           dynamicColor = this.style.fill;
           d3.select(this)
@@ -174,7 +175,7 @@ function visualizeBig5Data(data) {
           return data;
       })
       .attr('y', function (data) {
-          return height - data;
+          return heightOffset - data;
       })
       .delay(function (data, i) {
           return i * 20;
@@ -222,62 +223,62 @@ function visualizeBig5Data(data) {
               d3.select("svg")
                  .append("text")
                  .text("Openness")
-                 .attr("text-anchor", "middle")
+                 .attr("text-anchor", "start")
                  .attr("writing-mode", "tb")
-                 .attr('x', 35)
-                 .attr('y', 190)
+                 .attr('x', -165)
+                 .attr('y', 210)
+                 .attr("transform", "rotate(-45)")
                  .attr("font-family", "sans-serif")
                  .attr("font-size", "14px")
-                 .attr("stroke", "black")
-                 .attr("fill", "white")
+                 .attr("fill", "black")
 
                d3.select("svg")
                   .append("text")
                   .text("Conscientiousness")
-                  .attr("text-anchor", "middle")
+                  .attr("text-anchor", "start")
                   .attr("writing-mode", "tb")
-                  .attr('x', 115)
-                  .attr('y', 190)
+                  .attr('x', -110)
+                  .attr('y', 265)
+                  .attr("transform", "rotate(-45)")
                   .attr("font-family", "sans-serif")
                   .attr("font-size", "14px")
-                  .attr("stroke", "black")
-                  .attr("fill", "white")
+                  .attr("fill", "black")
 
                 d3.select("svg")
                    .append("text")
                    .text("Extraversion")
-                   .attr("text-anchor", "middle")
+                   .attr("text-anchor", "start")
                    .attr("writing-mode", "tb")
-                   .attr('x', 195)
-                   .attr('y', 190)
+                   .attr('x', -55)
+                   .attr('y', 320)
+                   .attr("transform", "rotate(-45)")
                    .attr("font-family", "sans-serif")
                    .attr("font-size", "14px")
-                   .attr("stroke", "black")
-                   .attr("fill", "white")
+                   .attr("fill", "black")
 
                  d3.select("svg")
                     .append("text")
                     .text("Agreeableness")
-                    .attr("text-anchor", "middle")
+                    .attr("text-anchor", "start")
                     .attr("writing-mode", "tb")
-                    .attr('x', 275)
-                    .attr('y', 190)
+                    .attr('x', 7)
+                    .attr('y', 377)
+                    .attr("transform", "rotate(-45)")
                     .attr("font-family", "sans-serif")
                     .attr("font-size", "14px")
-                    .attr("stroke", "black")
-                    .attr("fill", "white")
+                    .attr("fill", "black")
 
                   d3.select("svg")
                      .append("text")
                      .text("Emotional Range")
-                     .attr("text-anchor", "middle")
+                     .attr("text-anchor", "start")
                      .attr("writing-mode", "tb")
-                     .attr('x', 360)
-                     .attr('y', 190)
+                     .attr('x', 60)
+                     .attr('y', 435)
+                     .attr("transform", "rotate(-45)")
                      .attr("font-family", "sans-serif")
                      .attr("font-size", "14px")
-                     .attr("stroke", "black")
-                     .attr("fill", "white")
+                     .attr("fill", "black")
 //            <text x="10" y="20" style="writing-mode: tb;">
 // Vertical
 //    </text>

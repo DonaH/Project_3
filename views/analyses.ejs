@@ -3,6 +3,19 @@
       <input type="text" name="twitter-handle" Placeholder="Enter Twitter Username" id="get-twitter-handle">
       <button class="btn-medium waves-effect waves-lightblue waves-ripple" type="button" id="analyze-tweets">Analyze Tweets</button>
       <br>
+<%# loading icon begin%>
+      <div id="loading-icon" class="preloader-wrapper small active" style="display: none; margin: auto">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+<%# loading icon end%>
       <hr>
       <div id="graph"></div>
       <div><p id="result"></p></div>
@@ -17,6 +30,16 @@
   var $result = $('#result')
   var $twitterHandle = $('#get-twitter-handle')
   var $graph = $('#graph')
+
+//loading icon logic begin//
+var $loadingIcon = $('#loading-icon')
+function displayLoading() {
+  $loadingIcon.css("display", "block")
+}
+function hideLoading() {
+  $loadingIcon.slideUp(400, function(){$loadingIcon.css("display", "none")})
+}
+//loading icon end//
 
   function displayAnalysis(data) {
     //BIG 5 PERSONALITY TRAITS
@@ -91,6 +114,7 @@
 
   $analyzeTweets.on('click', function(){
     console.log("Ajax call to the twitter API.")
+    displayLoading()
     $
       .ajax({
         method: 'get',
@@ -112,6 +136,7 @@
         contentType: "application/json"
       })
       .done(function(data){
+        hideLoading()
         console.log(data)
         $result.html("") //empty the result div
         $graph.html("") // empty the graph div
@@ -121,6 +146,9 @@
         // $result.text(compiledTweet)
       })
   })
+
+
+
 
 //***************D3js data visualization******************//
 

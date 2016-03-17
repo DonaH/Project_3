@@ -10,7 +10,11 @@
     .waves-effect.waves-lightblue.waves-ripple {
       background-color: rgba(51, 153, 255, 0.65);
     }
-    
+
     h1 {
       color: "FFFFFF";
+    }
+
+    .login {
+      padding-top: 0 50px;
     }

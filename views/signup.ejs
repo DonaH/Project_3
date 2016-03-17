@@ -3,7 +3,7 @@
   <h1>Signup</h1>
 
   <% if(message.length > 0) {%>
-    <div><%= message %></div>
+    <div id="flash-alert2" style="background-color: rgba(214, 61, 61, 0.64); color: rgb(154, 20, 13); border-radius: 3px; text-align: center; padding: 5px 5px 5px 5px; width: 250px"><%= message %></div>
     <% } %>
 
   <form action="/signup" method="post" class="col s12">
@@ -43,3 +43,10 @@
   <p>Go back <a href="/">Home</a>
 
 </div>
+
+<script type="text/javascript">
+  function slideAlertUp2(){
+    $('#flash-alert2').slideUp(400)
+  }
+  var slideAlert = window.setTimeout(slideAlertUp2, 3000)
+</script>

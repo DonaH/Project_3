@@ -16,8 +16,7 @@
         </div>
       </div>
 <%# loading icon end%>
-      <hr>
-      <div id="graph-big5"></div>
+      <div id="graph-big5" style="display: inline-block; margin: auto"></div>
 
       <div id="modal1" class="modal">
         <div class="modal-content">
@@ -29,13 +28,17 @@
         </div>
       </div>
 
-      <div id="graph-values"></div>
+      <div id="graph-values" style="display: inline-block; margin: auto"></div>
 
-      <div id="graph-needs"></div>
+      <div id="graph-needs" style="display: inline-block; margin: auto"></div>
 
+      <br>
+      <button class="waves-effect waves-light blue btn" style="display: none; margin: auto" type="button" id="display-full-data">Display Complete Profile Data</button>
       <div><p id="result"></p></div>
       <br>
-      <hr>
+      <button class="waves-effect waves-light blue btn" style="display: none; margin: auto" type="button" id="display-full-tweets">Display Tweet Data</button>
+      <div><p id="tweet-result"></p></div>
+
   </div>
 </div>
 
@@ -43,8 +46,11 @@
 
   var $analyzeTweets = $('#analyze-tweets')
   var $result = $('#result')
+  var $tweetResult = $('#tweet-result')
   var $twitterHandle = $('#get-twitter-handle')
   var $graph = $('#graph')
+  var $fullTweets = $('#display-full-tweets')
+  var $fullData = $('#display-full-data')
 
 //loading icon logic begin//
 var $loadingIcon = $('#loading-icon')
@@ -159,16 +165,37 @@ function hideLoading() {
         console.log(data)
         $result.html("") //empty the result div
         $graph.html("") // empty the graph div
-        displayAnalysis(data)
         visualizeBig5Data(data)
         visualizeValuesData(data)
         visualizeNeedsData(data)
+        $
+        $fullTweets.show()
+        $fullData.show()
+        $fullTweets.on('click', function(){
+          if($tweetResult.text() === "") {
+            $tweetResult.text(compiledTweet)
+            $fullTweets.text("Close Tweet Data")
+          }
+          else {
+            $tweetResult.text("")
+            $fullTweets.text("Display Tweet Data")
+          }
+        })
+        $fullData.on('click', function(){
+          if(!($result.text())) {
+            displayAnalysis(data)
+            $fullData.text("Close Complete Profile Data")
+          }
+          else {
+            $result.text("")
+            $fullData.text("Display Complete Profile Data")
+          }
+        })
       })
         // $result.text(compiledTweet)
       })
   })
 /////Analyze Tweet button END /////////
-
 
 
 //***************D3js data visualization******************//
@@ -288,7 +315,7 @@ function visualizeBig5Data(data) {
                  .attr("font-family", "sans-serif")
                  .attr("font-size", "14px")
                  .attr("fill", "black")
-                 .on('mouseover', function(data) {
+                 .on('click', function(data) {
                      $('#modal-header').text("Openness")
                      $('#modal-paragraph').text("Openness is a general appreciation for art, emotion, adventure, unusual ideas, imagination, curiosity, and variety of experience. People who are open to experience are intellectually curious, open to emotion, sensitive to beauty and willing to try new things. They tend to be, when compared to closed people, more creative and more aware of their feelings. They are also more likely to hold unconventional beliefs.")
                      $('#modal1').openModal()
@@ -306,7 +333,7 @@ function visualizeBig5Data(data) {
                   .attr("font-family", "sans-serif")
                   .attr("font-size", "14px")
                   .attr("fill", "black")
-                  .on('mouseover', function(data) {
+                  .on('click', function(data) {
                       $('#modal-header').text("Conscientiousness")
                       $('#modal-paragraph').text("Conscientiousness is a tendency to show self-discipline, act dutifully, and aim for achievement against measures or outside expectations. It is related to the way in which people control, regulate, and direct their impulses.")
                       $('#modal1').openModal()
@@ -323,7 +350,7 @@ function visualizeBig5Data(data) {
                    .attr("font-family", "sans-serif")
                    .attr("font-size", "14px")
                    .attr("fill", "black")
-                   .on('mouseover', function(data) {
+                   .on('click', function(data) {
                        $('#modal-header').text("Extraversion")
                        $('#modal-paragraph').text("Extraversion is characterized by breadth of activities (as opposed to depth), surgency from external activity/situations, and energy creation from external means. The trait is marked by pronounced engagement with the external world. Extraverts enjoy interacting with people, and are often perceived as full of energy. They tend to be enthusiastic, action-oriented individuals. They possess high group visibility, like to talk, and assert themselves.")
                        $('#modal1').openModal()
@@ -341,7 +368,7 @@ function visualizeBig5Data(data) {
                     .attr("font-family", "sans-serif")
                     .attr("font-size", "14px")
                     .attr("fill", "black")
-                    .on('mouseover', function(data) {
+                    .on('click', function(data) {
                         $('#modal-header').text("Agreeableness")
                         $('#modal-paragraph').text("The agreeableness trait reflects individual differences in general concern for social harmony. Agreeable individuals value getting along with others. They are generally considerate, kind, generous, trusting and trustworthy, helpful, and willing to compromise their interests with others. Agreeable people also have an optimistic view of human nature.  Disagreeable individuals place self-interest above getting along with others. They are generally unconcerned with others' well-being, and are less likely to extend themselves for other people. Sometimes their skepticism about others' motives causes them to be suspicious, unfriendly, and uncooperative.")
                         $('#modal1').openModal()
@@ -359,7 +386,7 @@ function visualizeBig5Data(data) {
                      .attr("font-family", "sans-serif")
                      .attr("font-size", "14px")
                      .attr("fill", "black")
-                     .on('mouseover', function(data) {
+                     .on('click', function(data) {
                          $('#modal-header').text("Emotional Range")
                          $('#modal-paragraph').text("Emotional range (i.e., neuroticism) is the tendency to experience negative emotions, such as anger, anxiety, or depression. It is sometimes called emotional instability, or is reversed and referred to as emotional stability. Those who score high in neuroticism are emotionally reactive and vulnerable to stress. They are more likely to interpret ordinary situations as threatening, and minor frustrations as hopelessly difficult.")
                          $('#modal1').openModal()
@@ -483,7 +510,7 @@ function visualizeValuesData(data) {
                  .attr("font-family", "sans-serif")
                  .attr("font-size", "14px")
                  .attr("fill", "black")
-                 .on('mouseover', function(data) {
+                 .on('click', function(data) {
                      $('#modal-header').text("Conservation")
                      $('#modal-paragraph').text("Conservation consists of several subsets of basic values.  These include security, which is associated with safety, harmony, and stability of society, of relationships, and of self.  Conformity is another aspect of conservation, which involves restraint of actions, inclinations, and impulses likely to upset or harm others and violate social expectations or norms. Finally, tradition is another facet of conservation that centers on respect, commitment, and acceptance of the customs and ideas that one's culture or religion provides.")
                      $('#modal1').openModal()
@@ -500,7 +527,7 @@ function visualizeValuesData(data) {
                   .attr("font-family", "sans-serif")
                   .attr("font-size", "14px")
                   .attr("fill", "black")
-                  .on('mouseover', function(data) {
+                  .on('click', function(data) {
                       $('#modal-header').text("Openness To Change")
                       $('#modal-paragraph').text("Openness to change can be broken down into (1) Self-Direction: independent thought and action-choosing, creating, exploring; and (2) Stimulation: excitement, novelty, and challenge in life.")
                       $('#modal1').openModal()
@@ -517,7 +544,7 @@ function visualizeValuesData(data) {
                    .attr("font-family", "sans-serif")
                    .attr("font-size", "14px")
                    .attr("fill", "black")
-                   .on('mouseover', function(data) {
+                   .on('click', function(data) {
                        $('#modal-header').text("Hedonism")
                        $('#modal-paragraph').text("Hedonism centers on pleasure or sensuous gratification for oneself.")
                        $('#modal1').openModal()
@@ -534,7 +561,7 @@ function visualizeValuesData(data) {
                     .attr("font-family", "sans-serif")
                     .attr("font-size", "14px")
                     .attr("fill", "black")
-                    .on('mouseover', function(data) {
+                    .on('click', function(data) {
                         $('#modal-header').text("Self Enhancement")
                         $('#modal-paragraph').text("Self-enhancement involves aspects such as (1) Achievement: personal success through demonstrating competence according to social standards; and (2) Power: social status and presitge, control or dominance over people and resources.")
                         $('#modal1').openModal()
@@ -551,7 +578,7 @@ function visualizeValuesData(data) {
                      .attr("font-family", "sans-serif")
                      .attr("font-size", "14px")
                      .attr("fill", "black")
-                     .on('mouseover', function(data) {
+                     .on('click', function(data) {
                          $('#modal-header').text("Self Transcendence")
                          $('#modal-paragraph').text("Self-transcendence focuses on (1) Benevolence: preserving and enhancing the welfare of those with whom one is in frequent personal contact; and (2) Universalism: understanding, appreciation, tolerance, and protection for the welfare of all people and for nature.")
                          $('#modal1').openModal()
@@ -582,7 +609,7 @@ function visualizeNeedsData(data) {
 
   //  the size of the overall svg element
   var height = 380,
-      width = 1200,
+      width = 1000,
       heightOffset = 250
 
   //  the width of each bar and the offset between each bar
@@ -653,7 +680,7 @@ function visualizeNeedsData(data) {
            .append("text")
            .text("Needs")
            .attr("text-anchor", "middle")
-           .attr('x', 200)
+           .attr('x', 450)
            .attr('y', 60)
            .attr("font-family", "sans-serif")
            .attr("font-size", "22px")
@@ -664,7 +691,7 @@ function visualizeNeedsData(data) {
               .append("text")
               .text("@" + $twitterHandle.val())
               .attr("text-anchor", "middle")
-              .attr('x', 200)
+              .attr('x', 450)
               .attr('y', 30)
               .attr("font-family", "sans-serif")
               .attr("font-size", "22px")
@@ -682,11 +709,6 @@ function visualizeNeedsData(data) {
                  .attr("font-family", "sans-serif")
                  .attr("font-size", "14px")
                  .attr("fill", "black")
-                 .on('mouseover', function(data) {
-                     $('#modal-header').text("Openness")
-                     $('#modal-paragraph').text("Openness is a general appreciation for art, emotion, adventure, unusual ideas, imagination, curiosity, and variety of experience. People who are open to experience are intellectually curious, open to emotion, sensitive to beauty and willing to try new things. They tend to be, when compared to closed people, more creative and more aware of their feelings. They are also more likely to hold unconventional beliefs.")
-                     $('#modal1').openModal()
-                   })
 
                d3.select("#svgNeedsGraph")
                   .append("text")
@@ -699,11 +721,6 @@ function visualizeNeedsData(data) {
                   .attr("font-family", "sans-serif")
                   .attr("font-size", "14px")
                   .attr("fill", "black")
-                  .on('mouseover', function(data) {
-                      $('#modal-header').text("Conscientiousness")
-                      $('#modal-paragraph').text("Conscientiousness is a tendency to show self-discipline, act dutifully, and aim for achievement against measures or outside expectations. It is related to the way in which people control, regulate, and direct their impulses.")
-                      $('#modal1').openModal()
-                  })
 
                 d3.select("#svgNeedsGraph")
                    .append("text")
@@ -716,11 +733,6 @@ function visualizeNeedsData(data) {
                    .attr("font-family", "sans-serif")
                    .attr("font-size", "14px")
                    .attr("fill", "black")
-                   .on('mouseover', function(data) {
-                       $('#modal-header').text("Extraversion")
-                       $('#modal-paragraph').text("Extraversion is characterized by breadth of activities (as opposed to depth), surgency from external activity/situations, and energy creation from external means. The trait is marked by pronounced engagement with the external world. Extraverts enjoy interacting with people, and are often perceived as full of energy. They tend to be enthusiastic, action-oriented individuals. They possess high group visibility, like to talk, and assert themselves.")
-                       $('#modal1').openModal()
-                   })
 
                  d3.select("#svgNeedsGraph")
                     .append("text")
@@ -733,12 +745,6 @@ function visualizeNeedsData(data) {
                     .attr("font-family", "sans-serif")
                     .attr("font-size", "14px")
                     .attr("fill", "black")
-                    .on('mouseover', function(data) {
-                        $('#modal-header').text("Agreeableness")
-                        $('#modal-paragraph').text("The agreeableness trait reflects individual differences in general concern for social harmony. Agreeable individuals value getting along with others. They are generally considerate, kind, generous, trusting and trustworthy, helpful, and willing to compromise their interests with others. Agreeable people also have an optimistic view of human nature.  Disagreeable individuals place self-interest above getting along with others. They are generally unconcerned with others' well-being, and are less likely to extend themselves for other people. Sometimes their skepticism about others' motives causes them to be suspicious, unfriendly, and uncooperative.")
-                        $('#modal1').openModal()
-                    })
-
 
                   d3.select("#svgNeedsGraph")
                      .append("text")
@@ -751,11 +757,6 @@ function visualizeNeedsData(data) {
                      .attr("font-family", "sans-serif")
                      .attr("font-size", "14px")
                      .attr("fill", "black")
-                     .on('mouseover', function(data) {
-                         $('#modal-header').text("Emotional Range")
-                         $('#modal-paragraph').text("Emotional range (i.e., neuroticism) is the tendency to experience negative emotions, such as anger, anxiety, or depression. It is sometimes called emotional instability, or is reversed and referred to as emotional stability. Those who score high in neuroticism are emotionally reactive and vulnerable to stress. They are more likely to interpret ordinary situations as threatening, and minor frustrations as hopelessly difficult.")
-                         $('#modal1').openModal()
-                     })
 
                    d3.select("#svgNeedsGraph")
                       .append("text")
@@ -781,17 +782,17 @@ function visualizeNeedsData(data) {
                          .attr("font-size", "14px")
                          .attr("fill", "black")
 
-                         d3.select("#svgNeedsGraph")
-                            .append("text")
-                            .text("Love")
-                            .attr("text-anchor", "start")
-                            .attr("writing-mode", "tb")
-                            .attr('x', 435+160)
-                            .attr('y', 265)
-                            .attr("transform", "rotate(-45, 595, 265)")
-                            .attr("font-family", "sans-serif")
-                            .attr("font-size", "14px")
-                            .attr("fill", "black")
+                       d3.select("#svgNeedsGraph")
+                          .append("text")
+                          .text("Love")
+                          .attr("text-anchor", "start")
+                          .attr("writing-mode", "tb")
+                          .attr('x', 435+160)
+                          .attr('y', 265)
+                          .attr("transform", "rotate(-45, 595, 265)")
+                          .attr("font-family", "sans-serif")
+                          .attr("font-size", "14px")
+                          .attr("fill", "black")
 
                         d3.select("#svgNeedsGraph")
                            .append("text")
@@ -805,17 +806,17 @@ function visualizeNeedsData(data) {
                            .attr("font-size", "14px")
                            .attr("fill", "black")
 
-                           d3.select("#svgNeedsGraph")
-                              .append("text")
-                              .text("Self Expression")
-                              .attr("text-anchor", "start")
-                              .attr("writing-mode", "tb")
-                              .attr('x', 515+240)
-                              .attr('y', 265)
-                              .attr("transform", "rotate(-45, 755, 265)")
-                              .attr("font-family", "sans-serif")
-                              .attr("font-size", "14px")
-                              .attr("fill", "black")
+                         d3.select("#svgNeedsGraph")
+                            .append("text")
+                            .text("Self Expression")
+                            .attr("text-anchor", "start")
+                            .attr("writing-mode", "tb")
+                            .attr('x', 515+240)
+                            .attr('y', 265)
+                            .attr("transform", "rotate(-45, 755, 265)")
+                            .attr("font-family", "sans-serif")
+                            .attr("font-size", "14px")
+                            .attr("fill", "black")
 
                           d3.select("#svgNeedsGraph")
                              .append("text")
@@ -828,7 +829,6 @@ function visualizeNeedsData(data) {
                              .attr("font-family", "sans-serif")
                              .attr("font-size", "14px")
                              .attr("fill", "black")
-
 
                          d3.select("#svgNeedsGraph")
                             .append("text")

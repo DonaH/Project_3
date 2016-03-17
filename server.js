@@ -25,8 +25,8 @@ var
 var port = process.env.PORT || 3000
 
 // DATABASE
-var dbURL = 'mongodb://' + process.env.MLAB_USERNAME + ':' + process.env.MLAB_PASSWORD + '@ds063134.mlab.com:63134/heroku_v7560t60'
-// var dbURL = 'mongodb://localhost/project-3'
+// var dbURL = 'mongodb://' + process.env.MLAB_USERNAME + ':' + process.env.MLAB_PASSWORD + '@ds063134.mlab.com:63134/heroku_v7560t60'
+var dbURL = 'mongodb://localhost/project-3'
 
 mongoose.connect(dbURL, function(err){
   if(err) return console.log(err)
@@ -51,6 +51,10 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 app.use(ejsLayouts)
+app.use(function(req,res,next){
+  res.locals.login = req.isAuthenticated()
+  next()
+})
 
 
 app.use(favicon(__dirname + '/public/favicon.ico'));

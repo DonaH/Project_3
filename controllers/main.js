@@ -6,7 +6,7 @@ module.exports = {
       indexHeader: "Our Index Page",
       indexParagraph: "Paragraph stuff."
     }
-    res.render('index', data)
+    res.render('index')
   },
 
   analyses: function(req, res){

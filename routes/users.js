@@ -3,7 +3,9 @@
 var
   express = require('express'),
   passport = require('passport'),
-  userRouter = express.Router()
+  userRouter = express.Router(),
+  User = require('../models/User.js')
+
 
 // Route for logging in
 userRouter.route('/login')
@@ -28,6 +30,23 @@ userRouter.route('/signup')
 // Route for profile
 userRouter.get('/profile', isLoggedIn, function(req, res){
   res.render('profile', {user: req.user})
+})
+
+// Route for profile
+userRouter.get('/update', isLoggedIn, function(req, res){
+  res.render('update', {user: req.user})
+})
+
+// Route for deleting Profile
+userRouter.delete('/profile/:id', function(req,res){
+  User.findOneAndRemove({_id: req.params.id}, function(err){
+    if(err){
+      console.log(err)
+      res.json({success:false, message:"Not deleted"})
+    } else {
+      res.json({success:true, message:"Deleted."})
+    }
+  })
 })
 
 //function for checking if a user is logged in

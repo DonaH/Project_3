@@ -2,11 +2,18 @@
     When creating your CSS selector,
     change "brown" to something of your choosing
     */
-    .waves-effect.waves-blue.waves-ripple {
-     /* The alpha value allows the text and background color
-     of the button to still show through. */
-      background-color: rgba(0, 128, 255, 0.65);
-    }
-    .waves-effect.waves-lightblue.waves-ripple {
-      background-color: rgba(51, 153, 255, 0.65);
-    }
+.waves-effect.waves-blue.waves-ripple {
+ /* The alpha value allows the text and background color
+ of the button to still show through. */
+  background-color: rgba(0, 128, 255, 0.65);
+}
+.waves-effect.waves-lightblue.waves-ripple {
+  background-color: rgba(51, 153, 255, 0.65);
+}
+
+h1 {
+  color: "FFFFFF";
+}
+.parallax-container {
+height: 540px;
+}

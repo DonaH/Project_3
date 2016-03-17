@@ -4,8 +4,8 @@ module.exports = {
   'twitter': {
     'consumerKey': process.env.TWITTER_API_KEY,
     'consumerSecret': process.env.TWITTER_API_SECRET,
-    'callbackURL': 'http://floating-harbor-88331.herokuapp.com/auth/twitter/callback'
-    // 'callbackURL': 'http://127.0.0.1:3000/auth/twitter/callback'
+    // 'callbackURL': 'http://floating-harbor-88331.herokuapp.com/auth/twitter/callback'
+    'callbackURL': 'http://127.0.0.1:3000/auth/twitter/callback'
     // 'profileFields': ['emails', 'displayName']
   }
 }

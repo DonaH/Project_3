@@ -34,7 +34,7 @@ Overall, Trello is very helpful during the planning and early part of the projec
 If you would like to download our app locally, fork the repo and run npm install. You will have to get keys from Twitter and Watson, and it is recommended that you store them in a .env file that is being '.gitignore'(d).
 
 # API Used
-We used IBM/Watson's Personality Insights API and Twitter's API. First we fetch data from the tweets and concatenated the text into one file file. Then feed the data from the tweets to Watson's Personality Insights checker, and get back the output into our app.
+We used IBM/Watson's Personality Insights API and Twitter's API. First we fetch data from the tweets and concatenated the text into one single file. Then feed the data from the tweets to Watson's Personality Insights checker, and get back the output into our app.
 
 [Watson's API Documentation](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights/api/v2/)
 <br>
@@ -60,4 +60,4 @@ We didn't have unsolved problems per se, however we would have liked to build ou
 
 # Working App
 We hosed our site on Herouku using mlab as our database storage.
-Here's the website: [Watson's Couch](https://floating-harbor-88331.herokuapp.com)
+Here's the website: [Watson's Couch](http://watsonscouch.herokuapp.com/)

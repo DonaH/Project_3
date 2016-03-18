@@ -17,7 +17,7 @@
         </p>
 
       <% } else { %>
-        
+
         <h3>Twitter User </h3>
 
         <p>
@@ -33,8 +33,13 @@
 
   </div>
 
-  <button type="button" id="delete-user">DELETE USER</button>
-
+  <div class="row">
+    <div class="col s12" style="text-align:center">
+      <button id="delete-user" class="btn-large waves-effect red waves-ripple" type="button">Delete My Account
+        <i class="material-icons right">delete</i>
+      </button>
+    </div>
+  </div>
 
   <script type="text/javascript">
 
@@ -47,6 +52,7 @@
         method: 'delete',
         url: 'profile/<%= user._id %>',
         success: function(result){
+          window.alert("Your account has been deleted.")
           window.location.replace('/')
         }
       })

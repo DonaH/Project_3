@@ -1,11 +1,14 @@
 <div class="row">
   <div class="login col s6 offset-s3">
+    <h2 style="text-align:center; margin-top:60px">Login</h2>
 
-
-  <h2 style="text-align:center; margin-top:60px">Login</h2>
 
   <% if(message.length > 0) {%>
-    <div id="flash-alert" style="background-color: rgba(214, 61, 61, 0.64); color: rgb(154, 20, 13); border-radius: 3px; text-align: center; padding: 5px 5px 5px 5px; width: 250px"><%= message %></div>
+    <div class="row">
+      <div class="login col s6 offset-s3 center-align ">
+        <div id="flash-alert" style="background-color: rgba(214, 61, 61, 0.64); color: rgb(154, 20, 13); width: 250px; height:40px"><%= message %></div>
+        </div>
+    </div>
     <% } %>
 
   <form action="/login" method="post" class="col s12">
@@ -57,6 +60,10 @@
       </div>
 </div>
 </div>
+</div>
+</div>
+
+
 
 <script type="text/javascript">
   function slideAlertUp(){

@@ -1,5 +1,5 @@
 # Watson's Couch App
----
+
 Watson's couch is a web app that illustrates the psychological profile of a twitter user by analyzing the last 200 tweets of the user. Upon entering a twitter user handle, one will be able to view graphs that illustrate the profile scores of said user.
 
 # Technologies

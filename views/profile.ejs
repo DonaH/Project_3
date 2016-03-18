@@ -1,34 +1,7 @@
-<div class="page-header">
-
-  <h1><%= user.local.name || user.twitter.name %> </h1>
-
-  <a href="/logout" class="waves-effect waves-light btn">Logout</a>
-
-</div>
-
-<div>
-  <div>
-    <% if(user.local.name){ %>
-      <h3>Locally Stored User</h3>
-
-      <p>
-        <strong>Name</strong>: <%= user.local.name %><br>
-        <strong>id</strong>: <%= user._id %><br>
-        <strong>email</strong>: <%= user.local.email %><br>
-        <strong>password</strong>: <%= user.local.password %>
-      </p>
-    <% } else { %>
-      <h3>Twitter User</h3>
-
-      <p>
-        <strong>Name</strong>: <%= user.twitter.name %><br>
-        <strong>id</strong>: <%= user.twitter.id %><br>
-        <strong>username</strong>: <%= user.twitter.username %><br>
-        <strong>token</strong>: <%= user.twitter.token %>
-      </p>
-
-    <% } %>
-
+<div class="row">
+  <div class="col s10">
+    <div class="page-header">
+      <h2 style:"text-align:center">The analyses of <%= user.local.name || user.twitter.name %> </h2>
+    </div>
   </div>
-
 </div>

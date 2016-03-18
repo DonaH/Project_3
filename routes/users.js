@@ -13,7 +13,7 @@ userRouter.route('/login')
     res.render('login', {message: req.flash('loginMessage')})
   })
   .post(passport.authenticate('local-login', {
-    successRedirect: '/profile',
+    successRedirect: '/analyses',
     failureRedirect: '/login'
   }))
 
@@ -23,7 +23,7 @@ userRouter.route('/signup')
     res.render('signup', {message: req.flash('signupMessage')})
   })
   .post(passport.authenticate('local-signup', {
-    successRedirect: '/profile',
+    successRedirect: '/analyses',
     failureRedirect: '/signup'
   }))
 
@@ -37,6 +37,16 @@ userRouter.get('/update', isLoggedIn, function(req, res){
   res.render('update', {user: req.user})
 })
 
+// Route for updating Profile
+userRouter.patch('/profile/:id', function(req,res){
+  console.log(req.body)
+  User.findOneAndUpdate({_id: req.params.id}, req.body, {new:true}, function(err,user){
+    if(err) console.log(err)
+    res.json({success:"booyah!", user: user})
+    console.log(user)
+  })
+})
+
 // Route for deleting Profile
 userRouter.delete('/profile/:id', function(req,res){
   User.findOneAndRemove({_id: req.params.id}, function(err){
@@ -44,7 +54,7 @@ userRouter.delete('/profile/:id', function(req,res){
       console.log(err)
       res.json({success:false, message:"Not deleted"})
     } else {
-      res.json({success:true, message:"Deleted."})
+      res.json({success:"", message:"Deleted."})
     }
   })
 })
@@ -66,7 +76,7 @@ userRouter.get('/logout', function(req, res){
 userRouter.get('/auth/twitter', passport.authenticate('twitter'))
 
 userRouter.get('/auth/twitter/callback', passport.authenticate('twitter', {
-  successRedirect: '/profile',
+  successRedirect: '/analyses',
   failureRedirect: '/login'
 }))
 

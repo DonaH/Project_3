@@ -33,9 +33,11 @@
       <div id="graph-needs" style="display: inline-block; margin: auto"></div>
 
       <br>
+      <div id="profile-button-div"></div>
       <button class="waves-effect waves-light blue btn" style="display: none; margin: auto" type="button" id="display-full-data">Display Complete Profile Data</button>
       <div><p id="result"></p></div>
       <br>
+      <div id="tweet-button-div"></div>
       <button class="waves-effect waves-light blue btn" style="display: none; margin: auto" type="button" id="display-full-tweets">Display Tweet Data</button>
       <div><p id="tweet-result"></p></div>
 
@@ -48,7 +50,9 @@
   var $result = $('#result')
   var $tweetResult = $('#tweet-result')
   var $twitterHandle = $('#get-twitter-handle')
-  var $graph = $('#graph')
+  var $graphValues = $('#graph-values')
+  var $graphBig5 = $('#graph-big5')
+  var $graphNeeds = $('#graph-needs')
   var $fullTweets = $('#display-full-tweets')
   var $fullData = $('#display-full-data')
 
@@ -140,6 +144,17 @@ function hideLoading() {
   $analyzeTweets.on('click', function(){
     console.log("Ajax call to the twitter API.")
     displayLoading()
+    $result.text("")
+    $tweetResult.text("")
+    $graphBig5.html("")
+    $graphValues.html("")
+    $graphNeeds.html("")
+    $fullTweets.hide()
+    $fullTweets.text("Display Tweet Data")
+    $fullData.hide()
+    $fullData.text("Display Complete Profile Data")
+    compiledTweet = ""
+    // console.log(compiledTweet + "test")
     $
       .ajax({
         method: 'get',
@@ -147,7 +162,7 @@ function hideLoading() {
       })
       .done(function(data){
         // console.log(data)
-        var compiledTweet = ""
+        // var compiledTweet = ""
         for (i=0; i<data.length; i++){
           compiledTweet += data[i].text
           compiledTweet += " "
@@ -162,9 +177,8 @@ function hideLoading() {
       })
       .done(function(data){
         hideLoading()
-        console.log(data)
+        // console.log(data)
         $result.html("") //empty the result div
-        $graph.html("") // empty the graph div
         visualizeBig5Data(data)
         visualizeValuesData(data)
         visualizeNeedsData(data)
@@ -173,16 +187,18 @@ function hideLoading() {
         $fullData.show()
         $fullTweets.on('click', function(){
           if($tweetResult.text() === "") {
+            console.log(compiledTweet)
             $tweetResult.text(compiledTweet)
             $fullTweets.text("Close Tweet Data")
           }
-          else {
+          else if ($fullTweets.text() === "Close Tweet Data") {
             $tweetResult.text("")
             $fullTweets.text("Display Tweet Data")
           }
         })
         $fullData.on('click', function(){
           if(!($result.text())) {
+            console.log(data)
             displayAnalysis(data)
             $fullData.text("Close Complete Profile Data")
           }

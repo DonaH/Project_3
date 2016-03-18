@@ -13,6 +13,7 @@ var
   passport = require('passport'),
   passportConfig = require('./config/passport.js'),
   // dotenv = require('dotenv').config({silent: true}),
+  //commented out dotenv requirement for heroku deployment because .env variables are set via CLI to heroku directly
   favicon = require('serve-favicon'),
   watson = require('watson-developer-cloud'),
   Profile = require('./models/Profile.js'),

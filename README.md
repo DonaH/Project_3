@@ -25,6 +25,7 @@ We used IBM/Watson's Personality Insights API and Twitter's API. First we fetch 
 * Watson API
 * Twitter API
 * MongoDB
+* D3
 * Deployment - S3
 * Deployment - mlab
 * Deployment - Heroku
